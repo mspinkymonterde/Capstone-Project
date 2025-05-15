@@ -102,17 +102,17 @@ export function MainNav() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#about" legacyBehavior passHref>
+                <Link href="/#about" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>About</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#event" legacyBehavior passHref>
+                <Link href="/#event" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Event</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#contact" legacyBehavior passHref>
+                <Link href="/#contact" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Contact</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -170,13 +170,13 @@ export function MainNav() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="text-sm font-medium text-gray-500">Pages</div>
-                  <Link href="/about" className="text-base" onClick={() => setIsOpen(false)}>
+                  <Link href="/#about" className="text-base" onClick={() => setIsOpen(false)}>
                     About
                   </Link>
-                  <Link href="/event" className="text-base" onClick={() => setIsOpen(false)}>
+                  <Link href="/#event" className="text-base" onClick={() => setIsOpen(false)}>
                     Event
                   </Link>
-                  <Link href="/contact" className="text-base" onClick={() => setIsOpen(false)}>
+                  <Link href="/#contact" className="text-base" onClick={() => setIsOpen(false)}>
                     Contact
                   </Link>
                 </div>
