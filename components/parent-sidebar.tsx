@@ -103,7 +103,7 @@ export function ParentSidebarContent({
   const developmentalAreas = [
     {
       title: "Speech & Language",
-      href: "/parent/modules/speech-language",
+      href: "app/parent/resources/speech-language/basic-communication/page",
       icon: MessageSquare,
     },
     {
@@ -245,19 +245,9 @@ export function ParentSidebarContent({
                     icon: Home,
                   },
                   {
-                    title: "Resources",
-                    href: "/parent/resources",
-                    icon: FileText,
-                  },
-                  {
                     title: "Upcoming Events",
                     href: "/parent/events",
                     icon: Calendar,
-                  },
-                  {
-                    title: "Progress Tracking",
-                    href: "/parent/progress",
-                    icon: BarChart,
                   },
                   {
                     title: "Developmental Guides",
@@ -298,7 +288,7 @@ export function ParentSidebarContent({
           </SidebarGroup>
           {/* Developmental Modules */}
           <SidebarGroup>
-            {!sidebarCollapsed && <SidebarGroupLabel>Developmental Modules</SidebarGroupLabel>}
+            {!sidebarCollapsed && <SidebarGroupLabel>Developmental Resources</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
                 {developmentalAreas.map((area) => (

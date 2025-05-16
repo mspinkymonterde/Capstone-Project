@@ -21,8 +21,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en"> {/* Reintroduced <html> tag */}
+      <body
+        className={inter.className}
+        style={{ colorScheme: "light" }}
+      >
         <Toaster />
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

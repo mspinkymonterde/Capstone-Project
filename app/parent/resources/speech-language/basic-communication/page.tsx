@@ -49,7 +49,6 @@ export default function BasicCommunicationModule() {
         <Progress
           value={(currentStep / totalSteps) * 100}
           className="h-2 bg-green-100"
-          indicatorClassName="bg-green-600"
         />
       </div>
 
