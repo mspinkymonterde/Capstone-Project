@@ -1,145 +1,482 @@
 "use client"
 
+import React, { useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth-provider"
 import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
+import {
   Brain,
+  Calendar,
+  FileText,
   Home,
   LogOut,
   MessageSquare,
   HeartHandshake,
-  Activity,
   Settings,
   User,
   BookOpen,
   Dumbbell,
+  Puzzle,
+  BarChart,
+  Menu,
+  ChevronsLeft,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
-export function ParentSidebar() {
+// Layout wrapper: sidebar + main content
+export default function ParentSidebarLayout({ children }: { children: React.ReactNode }) {
+  const isMobile = useMediaQuery("(max-width: 768px)")
+  const [sidebarOpen, setSidebarOpen] = useState(!isMobile)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+
+  // Sync sidebarOpen with isMobile
+  React.useEffect(() => {
+    setSidebarOpen(!isMobile)
+    setSidebarCollapsed(false)
+  }, [isMobile])
+
+  // Desktop: sidebar pushes content using flex
+  // Mobile: sidebar overlays content
+  return (
+    <div className={`w-full h-full min-h-screen ${isMobile ? "" : "flex"}`}>
+      {/* Sidebar */}
+      <ParentSidebarContent
+        isMobile={isMobile}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={setSidebarCollapsed}
+      />
+      {/* Main content */}
+      <div
+        className={
+          isMobile
+            ? "w-full"
+            : "flex-1 min-w-0" // Remove ml-72/ml-12, let flexbox handle layout
+        }
+      >
+        {children}
+      </div>
+    </div>
+  )
+}
+
+type SidebarContentProps = {
+  isMobile: boolean
+  sidebarOpen: boolean
+  setSidebarOpen: (open: boolean) => void
+  sidebarCollapsed: boolean
+  setSidebarCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function ParentSidebarContent({
+  isMobile,
+  sidebarOpen,
+  setSidebarOpen,
+  sidebarCollapsed,
+  setSidebarCollapsed,
+}: SidebarContentProps) {
   const pathname = usePathname()
   const { logout, user } = useAuth()
 
-  const routes = [
-    {
-      title: "Dashboard",
-      href: "/parent/dashboard",
-      icon: Home,
-    },
-    {
-      title: "Developmental Guides",
-      href: "/parent/guides",
-      icon: BookOpen,
-    },
-    {
-      title: "Activity Modules",
-      href: "/parent/modules",
-      icon: Activity,
-    },
-    {
-      title: "Child Progress",
-      href: "/parent/progress",
-      icon: Activity,
-    },
-    {
-      title: "Profile",
-      href: "/parent/profile",
-      icon: User,
-    },
-    {
-      title: "Settings",
-      href: "/parent/settings",
-      icon: Settings,
-    },
-  ]
+  // Close sidebar after navigation (mobile only)
+  const handleNavigation = () => {
+    if (isMobile) setSidebarOpen(false)
+  }
+
+  const handleHideSidebar = () => setSidebarOpen(false)
+  const handleShowSidebar = () => setSidebarOpen(true)
+  const handleToggleCollapse = () => setSidebarCollapsed((prev: any) => !prev)
 
   const developmentalAreas = [
     {
       title: "Speech & Language",
-      href: "/parent/guides/speech-language",
+      href: "/parent/modules/speech-language",
       icon: MessageSquare,
     },
     {
-      title: "Social & Emotional",
-      href: "/parent/guides/social-emotional",
-      icon: HeartHandshake,
-    },
-    {
       title: "Cognitive",
-      href: "/parent/guides/cognitive",
+      href: "/parent/modules/cognitive",
       icon: Brain,
+      subItems: [
+        { title: "Pre-operational", href: "/parent/modules/cognitive/pre-operational" },
+        { title: "Sensorimotor", href: "/parent/modules/cognitive/sensorimotor" },
+      ],
     },
     {
       title: "Motor Skills",
-      href: "/parent/guides/motor-skills",
+      href: "/parent/modules/motor-skills",
       icon: Dumbbell,
+      subItems: [
+        { title: "Gross Motor", href: "/parent/modules/motor-skills/gross-motor" },
+        { title: "Fine Motor", href: "/parent/modules/motor-skills/fine-motor" },
+      ],
+    },
+    {
+      title: "Social & Emotional",
+      href: "/parent/modules/social-emotional",
+      icon: HeartHandshake,
+    },
+    {
+      title: "Adaptive",
+      href: "/parent/modules/adaptive",
+      icon: Puzzle,
     },
   ]
 
-  return (
-    <div className="flex h-full w-64 flex-col border-r bg-white">
-      <div className="flex h-14 items-center border-b px-4">
-        <Link href="/parent/dashboard" className="flex items-center gap-2 font-semibold">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-600 text-white">
-            <BookOpen className="h-3 w-3" />
-          </div>
-          <span>Parent Support</span>
-        </Link>
-      </div>
-      <div className="flex-1 overflow-auto py-2">
-        <nav className="grid gap-1 px-2">
-          {routes.map((route) => (
-            <Link
-              key={route.href}
-              href={route.href}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-gray-100 ${
-                pathname === route.href ? "bg-gray-100 font-medium text-green-600" : "text-gray-500"
-              }`}
-            >
-              <route.icon className="h-4 w-4" />
-              {route.title}
-            </Link>
-          ))}
-        </nav>
+  // Sidebar width
+  const sidebarWidth = sidebarCollapsed && !isMobile ? "w-12" : "w-72"
+  const sidebarBase =
+    "h-full bg-white border-r transition-all duration-300 flex flex-col z-50"
+  const sidebarMobile =
+    "fixed top-0 left-0 h-full max-w-xs w-[80vw] shadow-lg transition-transform duration-300"
+  const sidebarMobileOpen = "translate-x-0"
+  const sidebarMobileClosed = "-translate-x-full"
 
-        {pathname.includes("/parent/guides") && (
-          <div className="mt-6">
-            <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-              Developmental Areas
+  return (
+    <>
+      {/* Overlay for mobile */}
+      {isMobile && sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 transition-opacity"
+          onClick={handleHideSidebar}
+          aria-label="Sidebar overlay"
+        />
+      )}
+
+      {/* Sidebar */}
+      <nav
+        className={
+          isMobile
+            ? [
+                sidebarBase,
+                sidebarMobile,
+                sidebarOpen ? sidebarMobileOpen : sidebarMobileClosed,
+                "z-50"
+              ].join(" ")
+            : [sidebarBase, sidebarWidth, "relative"].join(" ")
+        }
+        style={
+          isMobile
+            ? { backgroundColor: "#fff" }
+            : {
+                width: sidebarCollapsed ? "3rem" : "18rem",
+                minWidth: sidebarCollapsed ? "3rem" : "18rem",
+                maxWidth: sidebarCollapsed ? "3rem" : "18rem",
+                backgroundColor: "#fff"
+              }
+        }
+      >
+        {/* Mobile: Profile and close button at top */}
+        {isMobile && (
+          <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-9 w-9 border border-green-100">
+                <AvatarImage src={user?.profileImage || ""} alt={user?.name || "User"} />
+                <AvatarFallback className="bg-green-100 text-green-600">{user?.name?.charAt(0) || "U"}</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="text-sm font-medium text-gray-900">{user?.name || "User"}</div>
+                <div className="truncate text-xs text-gray-500">{user?.email || "user@example.com"}</div>
+              </div>
             </div>
-            <nav className="grid gap-1 px-2">
-              {developmentalAreas.map((area) => (
-                <Link
-                  key={area.href}
-                  href={area.href}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-gray-100 ${
-                    pathname === area.href ? "bg-gray-100 font-medium text-green-600" : "text-gray-500"
-                  }`}
-                >
-                  <area.icon className="h-4 w-4" />
-                  {area.title}
-                </Link>
-              ))}
-            </nav>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-green-600"
+              onClick={handleHideSidebar}
+              aria-label="Hide sidebar"
+            >
+              <ChevronsLeft className="h-5 w-5" />
+            </Button>
           </div>
         )}
-      </div>
-      <div className="border-t p-4">
-        <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600">
-            <User className="h-5 w-5" />
+
+        {/* Desktop: Logo/header */}
+        {!isMobile && (
+          <div className="px-2 py-2 border-b">
+            <div className={`flex items-center justify-between ${sidebarCollapsed ? "justify-center" : ""}`}>
+              <Link
+                href="/parent/dashboard"
+                className={`flex items-center gap-2 font-semibold ${sidebarCollapsed ? "justify-center w-full" : ""}`}
+                onClick={handleNavigation}
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-white">
+                  <BookOpen className="h-4 w-4" />
+                </div>
+                {!sidebarCollapsed && <span className="text-lg font-bold">ParentSupport</span>}
+              </Link>
+              {/* Collapse/Expand button for desktop */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-green-600"
+                onClick={handleToggleCollapse}
+                aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                <ChevronsLeft className={`h-5 w-5 transition-transform ${sidebarCollapsed ? "rotate-180" : ""}`} />
+              </Button>
+            </div>
           </div>
-          <div className="flex-1 truncate">
-            <div className="text-sm font-medium text-gray-900">{user?.name}</div>
-            <div className="truncate text-xs text-gray-500">{user?.email}</div>
+        )}
+
+        <SidebarContent className={`overflow-y-auto flex-1 pb-20 ${sidebarCollapsed && !isMobile ? "px-0" : ""}`}>
+          {/* Navigation */}
+          <SidebarGroup>
+            {!sidebarCollapsed && <SidebarGroupLabel>Navigation</SidebarGroupLabel>}
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {[
+                  {
+                    title: "Dashboard",
+                    href: "/parent/dashboard",
+                    icon: Home,
+                  },
+                  {
+                    title: "Resources",
+                    href: "/parent/resources",
+                    icon: FileText,
+                  },
+                  {
+                    title: "Upcoming Events",
+                    href: "/parent/events",
+                    icon: Calendar,
+                  },
+                  {
+                    title: "Progress Tracking",
+                    href: "/parent/progress",
+                    icon: BarChart,
+                  },
+                  {
+                    title: "Developmental Guides",
+                    href: "/parent/guides",
+                    icon: BookOpen,
+                  },
+                ].map((item) => (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton asChild isActive={pathname === item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={handleNavigation}
+                        className={
+                          `group flex items-center gap-2 transition-colors w-full
+                          ${pathname === item.href
+                            ? "text-green-600 font-semibold bg-green-50"
+                            : "text-gray-700"}
+                          hover:text-green-800 hover:bg-green-100
+                          ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
+                        }
+                      >
+                        <item.icon
+                          className={
+                            `h-4 w-4 transition-colors
+                            ${pathname === item.href
+                              ? "text-green-600"
+                              : "text-gray-400"}
+                            group-hover:text-green-800`
+                          }
+                        />
+                        {!sidebarCollapsed && <span>{item.title}</span>}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          {/* Developmental Modules */}
+          <SidebarGroup>
+            {!sidebarCollapsed && <SidebarGroupLabel>Developmental Modules</SidebarGroupLabel>}
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {developmentalAreas.map((area) => (
+                  <SidebarMenuItem key={area.href}>
+                    {area.subItems ? (
+                      <>
+                        <SidebarMenuButton asChild isActive={pathname.startsWith(area.href)}>
+                          <Link
+                            href={area.href}
+                            onClick={handleNavigation}
+                            className={
+                              `group flex items-center gap-2 transition-colors w-full
+                              ${pathname.startsWith(area.href)
+                                ? "text-green-600 font-semibold bg-green-50"
+                                : "text-gray-700"}
+                              hover:text-green-800 hover:bg-green-100
+                              ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
+                            }
+                          >
+                            <area.icon
+                              className={
+                                `h-4 w-4 transition-colors
+                                ${pathname.startsWith(area.href)
+                                  ? "text-green-600"
+                                  : "text-gray-400"}
+                                group-hover:text-green-800`
+                              }
+                            />
+                            {!sidebarCollapsed && <span>{area.title}</span>}
+                          </Link>
+                        </SidebarMenuButton>
+                        {!sidebarCollapsed && (
+                          <div className="pl-6">
+                            {area.subItems.map((subItem) => (
+                              <div key={subItem.href}>
+                                <Link
+                                  href={subItem.href}
+                                  onClick={handleNavigation}
+                                  className={
+                                    `block w-full text-left transition-colors py-1 px-2 rounded
+                                    ${pathname === subItem.href
+                                      ? "text-green-600 font-semibold bg-green-50"
+                                      : "text-gray-700"}
+                                    hover:text-green-800 hover:bg-green-100`
+                                  }
+                                >
+                                  {subItem.title}
+                                </Link>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <SidebarMenuButton asChild isActive={pathname.startsWith(area.href)}>
+                        <Link
+                          href={area.href}
+                          onClick={handleNavigation}
+                          className={
+                            `group flex items-center gap-2 transition-colors w-full
+                            ${pathname.startsWith(area.href)
+                              ? "text-green-600 font-semibold bg-green-50"
+                              : "text-gray-700"}
+                            hover:text-green-800 hover:bg-green-100
+                            ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
+                          }
+                        >
+                          <area.icon
+                            className={
+                              `h-4 w-4 transition-colors
+                              ${pathname.startsWith(area.href)
+                                ? "text-green-600"
+                                : "text-gray-400"}
+                              group-hover:text-green-800`
+                            }
+                          />
+                          {!sidebarCollapsed && <span>{area.title}</span>}
+                        </Link>
+                      </SidebarMenuButton>
+                    )}
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          {/* Account */}
+          <SidebarGroup>
+            {!sidebarCollapsed && <SidebarGroupLabel>Account</SidebarGroupLabel>}
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {[
+                  {
+                    title: "Profile",
+                    href: "/parent/profile",
+                    icon: User,
+                  },
+                  {
+                    title: "Settings",
+                    href: "/parent/settings",
+                    icon: Settings,
+                  },
+                ].map((item) => (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton asChild isActive={pathname === item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={handleNavigation}
+                        className={
+                          `group flex items-center gap-2 transition-colors w-full
+                          ${pathname === item.href
+                            ? "text-green-600 font-semibold bg-green-50"
+                            : "text-gray-700"}
+                          hover:text-green-800 hover:bg-green-100
+                          ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
+                        }
+                      >
+                        <item.icon
+                          className={
+                            `h-4 w-4 transition-colors
+                            ${pathname === item.href
+                              ? "text-green-600"
+                              : "text-gray-400"}
+                            group-hover:text-green-800`
+                          }
+                        />
+                        {!sidebarCollapsed && <span>{item.title}</span>}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+        {/* Desktop: Footer with profile/logout */}
+        {!isMobile && (
+          <div className="p-4 border-t">
+            <div className={`flex items-center gap-3 rounded-lg bg-gray-50 p-3 ${sidebarCollapsed ? "flex-col p-1" : ""}`}>
+              <Avatar className="h-9 w-9 border border-green-100">
+                <AvatarImage src={user?.profileImage || ""} alt={user?.name || "User"} />
+                <AvatarFallback className="bg-green-100 text-green-600">{user?.name?.charAt(0) || "U"}</AvatarFallback>
+              </Avatar>
+              {!sidebarCollapsed && (
+                <div className="flex-1 truncate">
+                  <div className="text-sm font-medium text-gray-900">{user?.name || "User"}</div>
+                  <div className="truncate text-xs text-gray-500">{user?.email || "user@example.com"}</div>
+                </div>
+              )}
+              <Button variant="ghost" size="icon" onClick={logout} className="h-8 w-8 text-gray-500">
+                <LogOut className="h-4 w-4" />
+                <span className="sr-only">Log out</span>
+              </Button>
+            </div>
           </div>
-          <Button variant="ghost" size="icon" onClick={logout} className="h-8 w-8 text-gray-500">
-            <LogOut className="h-4 w-4" />
-            <span className="sr-only">Log out</span>
-          </Button>
-        </div>
-      </div>
-    </div>
+        )}
+        {/* Mobile: Logout at bottom */}
+        {isMobile && (
+          <div className="p-4 border-t mt-auto">
+            <Button variant="ghost" className="w-full flex items-center gap-2 text-gray-700" onClick={logout}>
+              <LogOut className="h-4 w-4" />
+              <span>Log out</span>
+            </Button>
+          </div>
+        )}
+      </nav>
+
+      {/* Floating open button (Menu icon) for mobile */}
+      {isMobile && !sidebarOpen && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className="fixed top-4 left-4 z-50 bg-white shadow md:hover:bg-green-50 text-green-600"
+          onClick={handleShowSidebar}
+          aria-label="Open sidebar"
+        >
+          <Menu className="h-6 w-6" />
+        </Button>
+      )}
+    </>
   )
 }
