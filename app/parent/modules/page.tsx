@@ -153,7 +153,7 @@ function ModuleCard({
             <span className="text-xs text-gray-500">Progress</span>
             <span className="text-xs font-medium">{progress}%</span>
           </div>
-          <Progress value={progress} className="h-1.5 bg-green-100" indicatorClassName="bg-green-600" />
+          <Progress value={progress} className="h-1.5 bg-green-100" />
         </div>
         <Link href={href}>
           <Button className="w-full rounded-full bg-green-600 hover:bg-green-700">

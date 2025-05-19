@@ -159,29 +159,6 @@ export default function ParentDashboard() {
           />
         </div>
       </div>
-
-      {/* Quick Links */}
-      <div className="mt-8">
-        <h2 className="mb-4 text-xl font-bold text-gray-900">Quick Links</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <QuickLinkCard
-            title="Developmental Guides"
-            description="Browse guides for different developmental areas"
-            href="/parent/guides"
-          />
-          <QuickLinkCard
-            title="Activity Modules"
-            description="Access interactive learning modules"
-            href="/parent/modules"
-          />
-          <QuickLinkCard
-            title="Track Progress"
-            description="Monitor your child's development"
-            href="/parent/progress"
-          />
-          <QuickLinkCard title="Community Support" description="Connect with other parents" href="/parent/community" />
-        </div>
-      </div>
     </div>
   )
 }

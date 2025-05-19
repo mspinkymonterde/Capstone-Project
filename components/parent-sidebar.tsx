@@ -103,7 +103,7 @@ export function ParentSidebarContent({
   const developmentalAreas = [
     {
       title: "Speech & Language",
-      href: "app/parent/resources/speech-language/basic-communication/page",
+      href: "/parent/resources",
       icon: MessageSquare,
     },
     {
@@ -207,32 +207,30 @@ export function ParentSidebarContent({
         {/* Desktop: Logo/header */}
         {!isMobile && (
           <div className="px-2 py-2 border-b">
-            <div className={`flex items-center justify-between ${sidebarCollapsed ? "justify-center" : ""}`}>
-              <Link
-                href="/parent/dashboard"
-                className={`flex items-center gap-2 font-semibold ${sidebarCollapsed ? "justify-center w-full" : ""}`}
-                onClick={handleNavigation}
-              >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-white">
-                  <BookOpen className="h-4 w-4" />
-                </div>
-                {!sidebarCollapsed && <span className="text-lg font-bold">ParentSupport</span>}
-              </Link>
-              {/* Collapse/Expand button for desktop */}
+            <div className={`flex items-center gap-1.5 ${sidebarCollapsed ? "justify-center" : ""}`}>
               <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-green-600"
-                onClick={handleToggleCollapse}
-                aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          variant="ghost"
+          size="icon"
+          className={`flex items-center gap-1.5 font-semibold h-8 w-8 ${sidebarCollapsed ? "justify-center w-full" : ""} hover:bg-green-600 hover:text-white`}
+          onClick={handleToggleCollapse}
+          aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
               >
-                <ChevronsLeft className={`h-5 w-5 transition-transform ${sidebarCollapsed ? "rotate-180" : ""}`} />
+          <Menu className="h-4 w-4" />
               </Button>
+              {!sidebarCollapsed && (
+          <Link
+            href="/parent/dashboard"
+            className="text-lg font-bold"
+            onClick={handleNavigation}
+          >
+            Menus
+          </Link>
+              )}
             </div>
           </div>
         )}
 
-        <SidebarContent className={`overflow-y-auto flex-1 pb-20 ${sidebarCollapsed && !isMobile ? "px-0" : ""}`}>
+        <SidebarContent className={`overflow-y-auto flex-1 pb-2 ${sidebarCollapsed && !isMobile ? "px-0" : ""}`}>
           {/* Navigation */}
           <SidebarGroup>
             {!sidebarCollapsed && <SidebarGroupLabel>Navigation</SidebarGroupLabel>}
@@ -253,6 +251,11 @@ export function ParentSidebarContent({
                     title: "Developmental Guides",
                     href: "/parent/guides",
                     icon: BookOpen,
+                  },
+                  {
+                    title: "Activity Modules",
+                    href: "/parent/modules",
+                    icon: FileText,
                   },
                 ].map((item) => (
                   <SidebarMenuItem key={item.href}>
