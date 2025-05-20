@@ -38,12 +38,12 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 // Layout wrapper: sidebar + main content
 export default function ParentSidebarLayout({ children }: { children: React.ReactNode }) {
   const isMobile = useMediaQuery("(max-width: 768px)")
-  const [sidebarOpen, setSidebarOpen] = useState(!isMobile)
+  const [sidebarOpen, setSidebarOpenAction] = useState(!isMobile)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   // Sync sidebarOpen with isMobile
   React.useEffect(() => {
-    setSidebarOpen(!isMobile)
+    setSidebarOpenAction(!isMobile)
     setSidebarCollapsed(false)
   }, [isMobile])
 
@@ -55,16 +55,24 @@ export default function ParentSidebarLayout({ children }: { children: React.Reac
       <ParentSidebarContent
         isMobile={isMobile}
         sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
+        setSidebarOpenAction={setSidebarOpenAction}
         sidebarCollapsed={sidebarCollapsed}
-        setSidebarCollapsed={setSidebarCollapsed}
+        setSidebarCollapsedAction={setSidebarCollapsed}
       />
       {/* Main content */}
       <div
         className={
           isMobile
             ? "w-full"
-            : "flex-1 min-w-0" // Remove ml-72/ml-12, let flexbox handle layout
+            : "flex-1 min-w-0 transition-all duration-300 ease-in-out"
+        }
+        style={
+          isMobile
+            ? undefined
+            : {
+                marginLeft: sidebarCollapsed ? "3rem" : "18rem",
+                transition: "margin-left 0.3s cubic-bezier(0.4,0,0.2,1)"
+              }
         }
       >
         {children}
@@ -76,34 +84,34 @@ export default function ParentSidebarLayout({ children }: { children: React.Reac
 type SidebarContentProps = {
   isMobile: boolean
   sidebarOpen: boolean
-  setSidebarOpen: (open: boolean) => void
+  setSidebarOpenAction: (open: boolean) => void
   sidebarCollapsed: boolean
-  setSidebarCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+  setSidebarCollapsedAction: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function ParentSidebarContent({
   isMobile,
   sidebarOpen,
-  setSidebarOpen,
+  setSidebarOpenAction,
   sidebarCollapsed,
-  setSidebarCollapsed,
+  setSidebarCollapsedAction,
 }: SidebarContentProps) {
   const pathname = usePathname()
   const { logout, user } = useAuth()
 
   // Close sidebar after navigation (mobile only)
   const handleNavigation = () => {
-    if (isMobile) setSidebarOpen(false)
+    if (isMobile) setSidebarOpenAction(false)
   }
 
-  const handleHideSidebar = () => setSidebarOpen(false)
-  const handleShowSidebar = () => setSidebarOpen(true)
-  const handleToggleCollapse = () => setSidebarCollapsed((prev: any) => !prev)
+  const handleHideSidebar = () => setSidebarOpenAction(false)
+  const handleShowSidebar = () => setSidebarOpenAction(true)
+  const handleToggleCollapse = () => setSidebarCollapsedAction((prev: any) => !prev)
 
   const developmentalAreas = [
     {
       title: "Speech & Language",
-      href: "/parent/resources",
+      href: "/parent/modules/speech-language",
       icon: MessageSquare,
     },
     {
@@ -166,7 +174,19 @@ export function ParentSidebarContent({
                 sidebarOpen ? sidebarMobileOpen : sidebarMobileClosed,
                 "z-50"
               ].join(" ")
-            : [sidebarBase, sidebarWidth, "relative"].join(" ")
+            : [
+                sidebarBase,
+                sidebarWidth,
+                "fixed",
+                "top-0",
+                "left-0",
+                "h-screen",
+                "flex",
+                "flex-col",
+                "transition-all",
+                "duration-300",
+                "ease-in-out"
+              ].join(" ")
         }
         style={
           isMobile
@@ -175,7 +195,10 @@ export function ParentSidebarContent({
                 width: sidebarCollapsed ? "3rem" : "18rem",
                 minWidth: sidebarCollapsed ? "3rem" : "18rem",
                 maxWidth: sidebarCollapsed ? "3rem" : "18rem",
-                backgroundColor: "#fff"
+                backgroundColor: "#fff",
+                height: "100vh",
+                zIndex: 50,
+                transition: "width 0.3s cubic-bezier(0.4,0,0.2,1), min-width 0.3s cubic-bezier(0.4,0,0.2,1), max-width 0.3s cubic-bezier(0.4,0,0.2,1)"
               }
         }
       >
@@ -230,7 +253,7 @@ export function ParentSidebarContent({
           </div>
         )}
 
-        <SidebarContent className={`overflow-y-auto flex-1 pb-2 ${sidebarCollapsed && !isMobile ? "px-0" : ""}`}>
+        <SidebarContent className={`flex-1 overflow-y-auto pb-2 ${sidebarCollapsed && !isMobile ? "px-0" : ""}`}>
           {/* Navigation */}
           <SidebarGroup>
             {!sidebarCollapsed && <SidebarGroupLabel>Navigation</SidebarGroupLabel>}
@@ -244,7 +267,7 @@ export function ParentSidebarContent({
                   },
                   {
                     title: "Upcoming Events",
-                    href: "/parent/events",
+                    href: "/parent/event",
                     icon: Calendar,
                   },
                   {
@@ -428,7 +451,7 @@ export function ParentSidebarContent({
         </SidebarContent>
         {/* Desktop: Footer with profile/logout */}
         {!isMobile && (
-          <div className="p-4 border-t">
+          <div className="p-4 border-t bg-white">
             <div className={`flex items-center gap-3 rounded-lg bg-gray-50 p-3 ${sidebarCollapsed ? "flex-col p-1" : ""}`}>
               <Avatar className="h-9 w-9 border border-green-100">
                 <AvatarImage src={user?.profileImage || ""} alt={user?.name || "User"} />
@@ -449,7 +472,7 @@ export function ParentSidebarContent({
         )}
         {/* Mobile: Logout at bottom */}
         {isMobile && (
-          <div className="p-4 border-t mt-auto">
+          <div className="p-4 border-t mt-auto bg-white">
             <Button variant="ghost" className="w-full flex items-center gap-2 text-gray-700" onClick={logout}>
               <LogOut className="h-4 w-4" />
               <span>Log out</span>
