@@ -276,7 +276,7 @@ export function ParentSidebarContent({
                     icon: BookOpen,
                   },
                   {
-                    title: "Activity Modules",
+                    title: "On Progress",
                     href: "/parent/modules",
                     icon: FileText,
                   },
@@ -314,7 +314,7 @@ export function ParentSidebarContent({
           </SidebarGroup>
           {/* Developmental Modules */}
           <SidebarGroup>
-            {!sidebarCollapsed && <SidebarGroupLabel>Developmental Resources</SidebarGroupLabel>}
+            {!sidebarCollapsed && <SidebarGroupLabel>Developmental Path</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
                 {developmentalAreas.map((area) => (

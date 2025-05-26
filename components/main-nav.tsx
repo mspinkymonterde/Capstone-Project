@@ -22,7 +22,7 @@ export function MainNav() {
     <header className="sticky top-0 z-50 w-full border-b border-green-100 bg-white">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="csn-logo.png" className="h-12 w-12" alt="CSN Parañaque Logo" />
+          <img src="/csn-logo.png" className="h-12 w-12" alt="CSN Parañaque Logo" />
           <span className="text-xl font-bold text-black">CSN Parañaque</span>
         </Link>
 

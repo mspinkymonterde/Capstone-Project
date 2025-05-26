@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (isLoading) return // Don't redirect while loading
 
-    const isAuthRoute = pathname === "/login" || pathname === "/register" || pathname === "/"
+    const isAuthRoute = pathname === "/login" || pathname === "/register" || pathname === "/" || pathname.startsWith("/blog")
     const isAdminRoute = pathname.startsWith("/admin")
     const isParentRoute = pathname.startsWith("/parent")
 

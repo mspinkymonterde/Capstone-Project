@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en"> {/* Reintroduced <html> tag */}
+    <html lang="en">
       <body
         className={inter.className}
         style={{ colorScheme: "light" }}
