@@ -125,7 +125,7 @@ export function ParentSidebarContent({
     },
     {
       title: "Motor Skills",
-      href: "/parent/modules/motor-skills",
+      href: "/parent/modules/motor",
       icon: Dumbbell,
       subItems: [
         { title: "Gross Motor", href: "/parent/modules/motor-skills/gross-motor" },

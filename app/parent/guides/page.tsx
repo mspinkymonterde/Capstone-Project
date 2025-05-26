@@ -558,7 +558,7 @@ export default function GuidesPage() {
                         </ul>
                       </div>
 
-                      <div className="border-l-4 border-green-600pl-4">
+                      <div className="border-l-4 border-green-600 pl-4">
                         <h4 className="font-medium">5-7 Years</h4>
                         <ul className="list-disc list-inside space-y-1 text-sm">
                           <li>Dresses independently</li>

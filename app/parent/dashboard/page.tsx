@@ -62,7 +62,7 @@ export default function ParentDashboard() {
                   </div>
                   <span className="text-sm text-gray-600">45%</span>
                 </div>
-                <Progress value={45} className="h-2 bg-green-100" indicatorClassName="bg-green-600" />
+                <Progress value={45} className="h-2 bg-green-100" />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -72,7 +72,7 @@ export default function ParentDashboard() {
                   </div>
                   <span className="text-sm text-gray-600">30%</span>
                 </div>
-                <Progress value={30} className="h-2 bg-green-100" indicatorClassName="bg-green-600" />
+                <Progress value={30} className="h-2 bg-green-100" />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -82,7 +82,7 @@ export default function ParentDashboard() {
                   </div>
                   <span className="text-sm text-gray-600">60%</span>
                 </div>
-                <Progress value={60} className="h-2 bg-green-100" indicatorClassName="bg-green-600" />
+                <Progress value={60} className="h-2 bg-green-100" />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -92,7 +92,7 @@ export default function ParentDashboard() {
                   </div>
                   <span className="text-sm text-gray-600">50%</span>
                 </div>
-                <Progress value={50} className="h-2 bg-green-100" indicatorClassName="bg-green-600" />
+                <Progress value={50} className="h-2 bg-green-100" />
               </div>
             </div>
           </CardContent>
@@ -192,7 +192,7 @@ function ModuleCard({
             <span className="text-xs text-gray-500">Progress</span>
             <span className="text-xs font-medium">{progress}%</span>
           </div>
-          <Progress value={progress} className="h-1.5 bg-green-100" indicatorClassName="bg-green-600" />
+          <Progress value={progress} className="h-1.5 bg-green-100" />
         </div>
         <Link href={href}>
           <Button className="w-full rounded-full bg-green-600 hover:bg-green-700">
