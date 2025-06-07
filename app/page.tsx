@@ -57,23 +57,8 @@ export default function CSNLandingPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3 mb-16">
-            <Card className="gov-card border-teal-100">
-              <CardHeader className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-csn-teal">
-                  <Heart className="h-8 w-8" />
-                </div>
-                <CardTitle className="text-xl text-csn-green">Our Mission</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center text-gray-600">
-                  To provide accessible, high-quality therapeutic services and support systems that empower children
-                  with special needs to reach their full potential through evidence-based interventions.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="gov-card border-teal-100">
+          <div className="grid gap-8 md:grid-cols-2 mb-16">
+                        <Card className="gov-card border-teal-100">
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-csn-green">
                   <Users className="h-8 w-8" />
@@ -87,18 +72,18 @@ export default function CSNLandingPage() {
                 </p>
               </CardContent>
             </Card>
-
+            
             <Card className="gov-card border-teal-100">
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yellow-100 text-csn-green">
-                  <Award className="h-8 w-8" />
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-100 text-csn-teal">
+                  <Heart className="h-8 w-8" />
                 </div>
-                <CardTitle className="text-xl text-csn-green">Our Impact</CardTitle>
+                <CardTitle className="text-xl text-csn-green">Our Mission</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-center text-gray-600">
-                  Serving over 500 families annually with comprehensive therapeutic interventions, family support
-                  programs, and community outreach initiatives throughout Parañaque City.
+                  To provide accessible, high-quality therapeutic services and support systems that empower children
+                  with special needs to reach their full potential through evidence-based interventions.
                 </p>
               </CardContent>
             </Card>

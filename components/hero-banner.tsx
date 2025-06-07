@@ -8,7 +8,7 @@ import Image from "next/image"
 
 const slides = [
   {
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/pic1.jpg",
     title: "Inclusive Therapy for Every Child",
     subtitle: "Comprehensive therapeutic services designed to support your child's unique developmental journey",
     cta: "Learn About Our Services",
