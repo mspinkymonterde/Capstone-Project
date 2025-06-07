@@ -53,17 +53,19 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        green: {
-          50: "#f0fdf4",
-          100: "#dcfce7",
-          200: "#bbf7d0",
-          300: "#86efac",
-          400: "#4ade80",
-          500: "#22c55e",
-          600: "#16a34a",
-          700: "#15803d",
-          800: "#166534",
-          900: "#14532d",
+        // CSN Brand Colors
+        teal: {
+          DEFAULT: "#00b2a9",
+          50: "#f0fdfc",
+          100: "#ccfbf1",
+          500: "#00b2a9",
+          600: "#009891",
+          700: "#007a75",
+        },
+        csn: {
+          green: "#007a3d",
+          yellow: "#f9cc41",
+          teal: "#00b2a9",
         },
       },
       borderRadius: {
@@ -80,14 +82,36 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "slide-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-up": "fade-up 0.6s ease-out",
+        "slide-in": "slide-in 0.4s ease-out",
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
 export default config
