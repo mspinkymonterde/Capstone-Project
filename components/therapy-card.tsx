@@ -30,10 +30,10 @@ export function TherapyCard({ icon, title, description, features, color = "teal"
     },
     yellow: {
       iconBg: "bg-yellow-100",
-      iconText: "text-csn-green",
+      iconText: "text-csn-yellow",
       border: "border-yellow-100",
-      button: "border-yellow-200 text-csn-green hover:bg-yellow-50",
-      check: "text-csn-green",
+      button: "border-yellow-200 text-csn-yellow hover:bg-yellow-50",
+      check: "text-csn-yellow",
     },
   }
 

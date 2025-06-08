@@ -80,7 +80,7 @@ const galleryItems = [
   },
 ]
 
-export function FacilitiesGallery() {
+export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [lightboxImage, setLightboxImage] = useState<(typeof galleryItems)[0] | null>(null)
 
@@ -88,16 +88,16 @@ export function FacilitiesGallery() {
     selectedCategory === "all" ? galleryItems : galleryItems.filter((item) => item.category === selectedCategory)
 
   return (
-    <section className="py-20 bg-white">
+    <section id="gallery" className="py-20 bg-white">
       <div className="container px-4 md:px-6">
         <div className="mx-auto max-w-4xl text-center mb-16">
           <div className="highlight-bar inline-block">
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Services and Facilities
+              Inside the CSN Center
             </h2>
           </div>
           <p className="text-lg text-gray-600 mb-8">
-            Take a closer look at our dedicated spaces, therapies in action, and community efforts.
+            Get a glimpse of our spaces, therapy sessions, and community programs in action.
           </p>
 
           {/* Category Filter */}

@@ -58,7 +58,7 @@ export function CSNHeader() {
         <NavigationMenuList>
 
             <NavigationMenuItem>
-          <Link href="/about" legacyBehavior passHref>
+          <Link href="/#about" legacyBehavior passHref>
         <NavigationMenuLink
         className={cn(navigationMenuTriggerStyle(), "hover:text-teal-600 transition-smooth text-base font-medium")}
         >
@@ -77,7 +77,7 @@ export function CSNHeader() {
           <NavigationMenuLink asChild>
           <a
             className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-teal-50 to-teal-100 p-5 no-underline outline-none focus:shadow-md transition-smooth"
-            href="#services"
+            href="/#services"
           >
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-teal-600 shadow-sm">
             <Heart className="h-5 w-5" />
@@ -90,35 +90,35 @@ export function CSNHeader() {
           </NavigationMenuLink>
         </li>
         <ServiceNavItem
-          href="#services"
+          href="/#services"
           title="Speech Therapy"
           icon={<MessageSquare className="h-4 w-4 text-teal-600" />}
         >
           Communication & language skills
         </ServiceNavItem>
         <ServiceNavItem
-          href="#services"
+          href="/#services"
           title="Occupational Therapy"
           icon={<Dumbbell className="h-4 w-4 text-teal-600" />}
         >
           Daily living & fine motor skills
         </ServiceNavItem>
         <ServiceNavItem
-          href="#services"
+          href="/#services"
           title="Physical Therapy"
           icon={<Stethoscope className="h-4 w-4 text-teal-600" />}
         >
           Gross motor & movement
         </ServiceNavItem>
         <ServiceNavItem
-          href="#services"
+          href="/#services"
           title="ABA Therapy"
           icon={<Brain className="h-4 w-4 text-teal-600" />}
         >
           Behavioral support
         </ServiceNavItem>
         <ServiceNavItem
-          href="#services"
+          href="/#services"
           title="Music Therapy"
           icon={<Music className="h-4 w-4 text-teal-600" />}
         >
@@ -129,20 +129,20 @@ export function CSNHeader() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="#facilities" legacyBehavior passHref>
+            <Link href="/#gallery" legacyBehavior passHref>
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),
                   "hover:text-teal-600 transition-smooth text-base font-medium"
                 )}
               >
-                Facilities
+                Gallery
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="/news" legacyBehavior passHref>
+            <Link href="/#updates" legacyBehavior passHref>
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),
@@ -155,7 +155,7 @@ export function CSNHeader() {
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-          <Link href="/events" legacyBehavior passHref>
+          <Link href="/#events" legacyBehavior passHref>
         <NavigationMenuLink
         className={cn(navigationMenuTriggerStyle(), "hover:text-teal-600 transition-smooth text-base font-medium")}
         >
@@ -165,7 +165,7 @@ export function CSNHeader() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-          <Link href="#contact" legacyBehavior passHref>
+          <Link href="/#footer" legacyBehavior passHref>
         <NavigationMenuLink
         className={cn(navigationMenuTriggerStyle(), "hover:text-teal-600 transition-smooth text-base font-medium")}
         >
