@@ -199,21 +199,21 @@ export function CSNHeader() {
           <div className="flex flex-col gap-2">
             <div className="text-xs font-medium text-gray-500">Services</div>
             <Link
-            href="#services"
+            href="/#services"
             className="flex items-center gap-2 text-sm hover:text-teal-600 transition-smooth"
             >
             <MessageSquare className="h-5 w-5 text-teal-600" />
             Speech Therapy
             </Link>
             <Link
-            href="#services"
+            href="/#services"
             className="flex items-center gap-2 text-sm hover:text-teal-600 transition-smooth"
             >
             <Dumbbell className="h-5 w-5 text-teal-600" />
             Occupational Therapy
             </Link>
             <Link
-            href="#services"
+            href="/#services"
             className="flex items-center gap-2 text-sm hover:text-teal-600 transition-smooth"
             >
             <Stethoscope className="h-5 w-5 text-teal-600" />
@@ -227,7 +227,7 @@ export function CSNHeader() {
             ABA Therapy
             </Link>
             <Link
-            href="#services"
+            href="/#services"
             className="flex items-center gap-2 text-sm hover:text-teal-600 transition-smooth"
             >
             <Music className="h-5 w-5 text-teal-600" />
@@ -237,13 +237,13 @@ export function CSNHeader() {
 
           <div className="flex flex-col gap-2">
             <div className="text-xs font-medium text-gray-500">Pages</div>
-            <Link href="/events" className="text-sm hover:text-teal-600 transition-smooth">
+            <Link href="/#events" className="text-sm hover:text-teal-600 transition-smooth">
             Events
             </Link>
-            <Link href="/about" className="text-sm hover:text-teal-600 transition-smooth">
+            <Link href="/#about" className="text-sm hover:text-teal-600 transition-smooth">
             About
             </Link>
-            <Link href="#contact" className="text-sm hover:text-teal-600 transition-smooth">
+            <Link href="/#contact" className="text-sm hover:text-teal-600 transition-smooth">
             Contact
             </Link>
           </div>

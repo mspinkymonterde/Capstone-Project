@@ -64,6 +64,11 @@
   }
 }
 
+/* Smooth scroll for anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom animations */
 @keyframes fadeUp {
   from {

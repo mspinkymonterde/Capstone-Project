@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/components/auth-provider"
 import LayoutClient from "@/components/layout-client" 
 import { Toaster } from "@/components/ui/toaster"
-import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -39,6 +38,4 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
