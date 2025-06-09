@@ -17,7 +17,7 @@ const enrolledModules = [
 		key: "sl-1",
 		title: "Early Communication Foundations",
 		area: "Speech & Language",
-		icon: <MessageSquare className="h-5 w-5 text-green-600" />,
+		icon: <MessageSquare className="h-5 w-5 text-teal-600" />,
 		description: "Learn to recognize and respond to your child's early communication attempts and build foundational skills.",
 		progress: 60,
 		href: "/parent/modules/speech-language/sentence-building",
@@ -28,7 +28,7 @@ const enrolledModules = [
 		key: "se-1",
 		title: "Emotional Recognition & Expression",
 		area: "Social & Emotional",
-		icon: <HeartHandshake className="h-5 w-5 text-green-600" />,
+		icon: <HeartHandshake className="h-5 w-5 text-teal-600" />,
 		description: "Help your child identify and express different emotions appropriately.",
 		progress: 15,
 		href: "/parent/modules/social-emotional/emotional-recognition",
@@ -39,7 +39,7 @@ const enrolledModules = [
     key: "cog-2",
     title: "Cause & Effect Understanding",
     area: "Cognitive",
-    icon: <Brain className="h-5 w-5 text-green-600" />,
+    icon: <Brain className="h-5 w-5 text-teal-600" />,
     description: "Help your child understand how their actions can cause predictable reactions.",
     progress: 25,
     href: "/parent/modules/cognitive/cause-effect",
@@ -50,7 +50,7 @@ const enrolledModules = [
 		key: "ms-3",
 		title: "Fine Motor Precision",
 		area: "Motor",
-		icon: <Dumbbell className="h-5 w-5 text-green-600" />,
+		icon: <Dumbbell className="h-5 w-5 text-teal-600" />,
 		description: "Activities to develop hand-eye coordination and small muscle control.",
 		progress: 40,
 		href: "/parent/modules/motor-skills/fine-motor",
@@ -61,7 +61,7 @@ const enrolledModules = [
 		key: "ad-2",
 		title: "Daily Routines & Sequencing",
 		area: "Adaptive",
-		icon: <Puzzle className="h-5 w-5 text-green-600" />,
+		icon: <Puzzle className="h-5 w-5 text-teal-600" />,
 		description: "Help your child understand and follow daily routines and multi-step sequences.",
 		progress: 75,
 		href: "/parent/modules/adaptive/daily-routines",
@@ -77,30 +77,30 @@ const getModulesByTrack = (track: string) =>
 
 export default function ModulesPage() {
 	return (
-		<div className="container p-6 bg-gradient-to-br from-teal-50 via-green-50 to-yellow-50">
+		<div className="container p-6 ">
 			<div className="mb-6">
-				<h1 className="text-2xl font-bold text-gray-900">Activity Modules</h1>
-				<p className="text-gray-600">Interactive learning modules to support your child's development</p>
+				<h1 className="text-2xl font-bold text-teal-800">Activity Modules</h1>
+				<p className="text-gray-700">Interactive learning modules to support your child's development</p>
 			</div>
 
 			<Tabs defaultValue="all" className="w-full">
-				<TabsList className="mb-6 bg-white text-gray-700">
-					<TabsTrigger value="all" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
-						All Modules
+				<TabsList className="mb-6 bg-white text-gray-700 border border-gray-100 rounded-lg shadow-sm">
+					<TabsTrigger value="all" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
+						All
 					</TabsTrigger>
-					<TabsTrigger value="speech" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+					<TabsTrigger value="speech" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
 						Speech & Language
 					</TabsTrigger>
-          <TabsTrigger value="cognitive" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="cognitive" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
 						Cognitive
 					</TabsTrigger>
-          <TabsTrigger value="motor" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="motor" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
 						Motor Skills
 					</TabsTrigger>
-					<TabsTrigger value="social" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+					<TabsTrigger value="social" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
 						Social & Emotional
 					</TabsTrigger>
-					<TabsTrigger value="adaptive" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+					<TabsTrigger value="adaptive" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
 						Adaptive Skills
 					</TabsTrigger>
 				</TabsList>
@@ -149,23 +149,23 @@ function ModuleCard({
 	href: string
 }) {
 	return (
-		<Card className="border-green-100 transition-shadow hover:shadow-md">
+		<Card className="border-0 shadow-md bg-white/80 backdrop-blur-sm transition-shadow hover:shadow-lg hover:scale-[1.02]">
 			<CardContent className="p-6">
 				<div className="mb-2 flex items-center gap-2">
 					{icon}
-					<span className="text-sm font-medium text-green-600">{area}</span>
+					<span className="text-sm font-medium text-teal-700">{area}</span>
 				</div>
-				<h3 className="mb-2 text-lg font-semibold">{title}</h3>
+				<h3 className="mb-2 text-lg font-semibold text-gray-800">{title}</h3>
 				<p className="mb-4 text-sm text-gray-600">{description}</p>
 				<div className="mb-4 space-y-2">
 					<div className="flex items-center justify-between">
 						<span className="text-xs text-gray-500">Progress</span>
-						<span className="text-xs font-medium">{progress}%</span>
+						<span className="text-xs font-medium text-teal-700">{progress}%</span>
 					</div>
-					<Progress value={progress} className="h-1.5 bg-green-100" />
+					<Progress value={progress} className="h-1.5 bg-gray-200 [&>*]:bg-gradient-to-r [&>*]:from-teal-400 [&>*]:to-teal-600" />
 				</div>
 				<Link href={href}>
-					<Button className="w-full rounded-full bg-green-600 hover:bg-green-700">
+					<Button className="w-full rounded-full bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800 text-white font-semibold">
 						Continue Module
 					</Button>
 				</Link>

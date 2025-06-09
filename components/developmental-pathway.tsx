@@ -50,19 +50,19 @@ export function DevelopmentalPathway({ title, description, modules, className }:
                   module.status === "locked"
                     ? "border-gray-300 bg-gray-100"
                     : module.status === "completed"
-                      ? "border-green-600 bg-green-100"
-                      : "border-green-600 bg-green-50",
+                      ? "border-teal-600 bg-teal-100"
+                      : "border-teal-600 bg-teal-50",
                 )}
               >
                 {module.status === "locked" ? (
                   <Lock className="h-5 w-5 text-gray-400" />
                 ) : module.status === "completed" ? (
-                  <div className="text-lg font-bold text-green-600">✓</div>
+                  <div className="text-lg font-bold text-teal-600">✓</div>
                 ) : (
-                  <div className="text-sm font-bold text-green-600">{index + 1}</div>
+                  <div className="text-sm font-bold text-teal-600">{index + 1}</div>
                 )}
               </div>
-
+              
               {/* Module card */}
               <div className="ml-16">
                 <Card
@@ -71,8 +71,8 @@ export function DevelopmentalPathway({ title, description, modules, className }:
                     module.status === "locked"
                       ? "border-gray-200"
                       : module.status === "completed"
-                        ? "border-green-200 bg-green-50"
-                        : "border-green-100",
+                        ? "border-teal-200 bg-teal-50"
+                        : "border-teal-100",
                   )}
                 >
                   <CardContent className="p-4">
@@ -97,7 +97,7 @@ export function DevelopmentalPathway({ title, description, modules, className }:
                           value={module.progress}
                           className={cn(
                             "h-1.5 bg-gray-100",
-                            module.status === "completed" ? "[&_.bg-primary]:bg-green-600" : "[&_.bg-primary]:bg-green-500"
+                            module.status === "completed" ? "[&_.bg-primary]:bg-teal-600" : "[&_.bg-primary]:bg-teal-500"
                           )}
                         />
                       </div>
@@ -115,8 +115,8 @@ export function DevelopmentalPathway({ title, description, modules, className }:
                             className={cn(
                               "rounded-full",
                               module.status === "completed"
-                                ? "bg-green-600 hover:bg-green-700"
-                                : "bg-green-600 hover:bg-green-700",
+                                ? "bg-teal-600 hover:bg-teal-700"
+                                : "bg-teal-600 hover:bg-teal-700",
                             )}
                           >
                             {module.status === "completed" ? "Review" : "Continue"}

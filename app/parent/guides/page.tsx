@@ -10,7 +10,7 @@ import { MessageSquare, HeartHandshake, Dumbbell, Brain, Puzzle, ArrowRight } fr
 
 export default function GuidesPage() {
   return (
-    <div className="container p-6 bg-gradient-to-br from-teal-50 via-green-50 to-yellow-50">
+    <div className="container p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Developmental Guides</h1>
         <p className="text-gray-600">Browse comprehensive guides for different developmental areas</p>
@@ -18,19 +18,19 @@ export default function GuidesPage() {
 
       <Tabs defaultValue="speech" className="w-full">
         <TabsList className="mb-6 bg-white text-gray-700">
-          <TabsTrigger value="speech" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="speech" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
             Speech & Language
           </TabsTrigger>
-          <TabsTrigger value="cognitive" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="cognitive" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
             Cognitive
           </TabsTrigger>
-          <TabsTrigger value="motor" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="motor" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
             Motor Skills
           </TabsTrigger>
-          <TabsTrigger value="social" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="social" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
             Social & Emotional
           </TabsTrigger>
-          <TabsTrigger value="adaptive" className="data-[state=active]:bg-green-50 data-[state=active]:text-green-700">
+          <TabsTrigger value="adaptive" className="data-[state=active]:bg-teal-50 data-[state=active]:text-teal-700">
             Adaptive Skills
           </TabsTrigger>
         </TabsList>
@@ -40,7 +40,7 @@ export default function GuidesPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    < MessageSquare className="h-6 w-6 mr-2 text-green-700" />
+                <MessageSquare className="h-6 w-6 mr-2 text-teal-700" />
                     Speech & Language Development
                   </CardTitle>
                   <CardDescription>Communication skills development and language acquisition</CardDescription>
@@ -56,55 +56,55 @@ export default function GuidesPage() {
 
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Key Milestones</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">0-12 Months</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Responds to sounds</li>
-                          <li>Babbles and makes cooing sounds</li>
-                          <li>Begins to understand simple words</li>
-                          <li>May say first words like "mama" or "dada"</li>
-                        </ul>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">0-12 Months</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Responds to sounds</li>
+                            <li>Babbles and makes cooing sounds</li>
+                            <li>Begins to understand simple words</li>
+                            <li>May say first words like "mama" or "dada"</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">2-3 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Uses 200+ words</li>
+                            <li>Speaks in 2-3 word sentences</li>
+                            <li>Asks simple questions</li>
+                            <li>Names familiar objects and people</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">5-7 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Uses complex sentences</li>
+                            <li>Understands time concepts</li>
+                            <li>Tells detailed stories</li>
+                            <li>Begins reading and writing</li>
+                          </ul>
+                        </div>
                       </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">1-2 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Uses 10-50 words</li>
-                          <li>Follows simple directions</li>
-                          <li>Begins to combine two words</li>
-                          <li>Points to named objects</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">2-3 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Uses 200+ words</li>
-                          <li>Speaks in 2-3 word sentences</li>
-                          <li>Asks simple questions</li>
-                          <li>Names familiar objects and people</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">3-5 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Uses 1000+ words</li>
-                          <li>Speaks in complete sentences</li>
-                          <li>Tells simple stories</li>
-                          <li>Follows multi-step directions</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">5-7 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Uses complex sentences</li>
-                          <li>Understands time concepts</li>
-                          <li>Tells detailed stories</li>
-                          <li>Begins reading and writing</li>
-                        </ul>
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">1-2 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Uses 10-50 words</li>
+                            <li>Follows simple directions</li>
+                            <li>Begins to combine two words</li>
+                            <li>Points to named objects</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">3-5 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Uses 1000+ words</li>
+                            <li>Speaks in complete sentences</li>
+                            <li>Tells simple stories</li>
+                            <li>Follows multi-step directions</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -137,7 +137,7 @@ export default function GuidesPage() {
                             Look at picture books together and name objects, actions, and people. Ask your child to point to specific items.
                           </p>
                           <div className="mt-4">
-                            <span className="inline-block rounded bg-green-50 text-green-700 text-xs px-2 py-1">Age range: 1-5 years</span>
+                        <span className="inline-block rounded bg-teal-50 text-teal-700 text-xs px-2 py-1">Age range: 1-5 years</span>
                           </div>
                         </CardContent>
                       </Card>
@@ -150,7 +150,7 @@ export default function GuidesPage() {
                             Play Simon Says to practice following directions. Start with simple commands and gradually increase complexity.
                           </p>
                           <div className="mt-4">
-                            <span className="inline-block rounded bg-green-50 text-green-700 text-xs px-2 py-1">Age range: 2-5 years</span>
+                        <span className="inline-block rounded bg-teal-50 text-teal-700 text-xs px-2 py-1">Age range: 2-5 years</span>
                           </div>
                         </CardContent>
                       </Card>
@@ -163,7 +163,7 @@ export default function GuidesPage() {
                             Create simple stories together. Use pictures, puppets, or toys to make it more engaging.
                           </p>
                           <div className="mt-4">
-                            <span className="inline-block rounded bg-green-50 text-green-700 text-xs px-2 py-1">Age range: 3-5 years</span>
+                        <span className="inline-block rounded bg-teal-50 text-teal-700 text-xs px-2 py-1">Age range: 3-5 years</span>
                           </div>
                         </CardContent>
                       </Card>
@@ -190,7 +190,7 @@ export default function GuidesPage() {
                   </div>
                   
                   <div className="flex justify-end">
-                    <Button asChild className="border-green-600 hover:bg-green-700">
+                <Button asChild className="border-teal-600 hover:bg-teal-700">
                       <Link href="/activity-modules?area=speech">
                         View Speech & Language Activities
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -206,7 +206,7 @@ export default function GuidesPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Brain className="h-6 w-6 mr-2 text-green-700" />
+                <Brain className="h-6 w-6 mr-2 text-teal-700" />
                     Cognitive Development
                   </CardTitle>
                   <CardDescription>Thinking, learning, problem-solving, and understanding</CardDescription>
@@ -282,7 +282,7 @@ export default function GuidesPage() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button asChild className="border-green-600 hover:bg-green-700">
+                <Button asChild className="border-teal-600 hover:bg-teal-700">
                       <Link href="/activity-modules?area=cognitive">
                         View Cognitive Activities
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -298,7 +298,7 @@ export default function GuidesPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Dumbbell className="h-6 w-6 mr-2 text-green-700" />
+                <Dumbbell className="h-6 w-6 mr-2 text-teal-700" />
                     Motor Skills Development
                   </CardTitle>
                   <CardDescription>Physical movement, coordination, and control</CardDescription>
@@ -380,7 +380,7 @@ export default function GuidesPage() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button asChild className="border-green-600 hover:bg-green-700">
+                <Button asChild className="border-teal-600 hover:bg-teal-700">
                       <Link href="/activity-modules?area=motor">
                         View Motor Skill Activities
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -396,7 +396,7 @@ export default function GuidesPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <HeartHandshake className="h-6 w-6 mr-2 text-green-700" />
+                <HeartHandshake className="h-6 w-6 mr-2 text-teal-700" />
                     Social & Emotional Development
                   </CardTitle>
                   <CardDescription>Understanding feelings, relationships, and social interactions</CardDescription>
@@ -412,57 +412,57 @@ export default function GuidesPage() {
 
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Key Milestones</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">0-12 Months</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Develops attachment to caregivers</li>
-                          <li>Responds to others' emotions</li>
-                          <li>Shows interest in faces</li>
-                          <li>Begins to show emotions like joy, fear, and anger</li>
-                        </ul>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">0-12 Months</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Develops attachment to caregivers</li>
+                            <li>Responds to others' emotions</li>
+                            <li>Shows interest in faces</li>
+                            <li>Begins to show emotions like joy, fear, and anger</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">2-3 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Becomes more independent</li>
+                            <li>Shows defiant behavior</li>
+                            <li>Begins to take turns</li>
+                            <li>Shows increasing interest in other children</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">5-7 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Forms more complex friendships</li>
+                            <li>Understands others' perspectives</li>
+                            <li>Develops better emotional regulation</li>
+                            <li>Shows increased empathy and compassion</li>
+                            <li>Follows social norms and rules</li>
+                          </ul>
+                        </div>
                       </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">1-2 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Shows affection to familiar people</li>
-                          <li>May have separation anxiety</li>
-                          <li>Begins to show empathy</li>
-                          <li>Engages in parallel play (playing alongside others)</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">2-3 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Becomes more independent</li>
-                          <li>Shows defiant behavior</li>
-                          <li>Begins to take turns</li>
-                          <li>Shows increasing interest in other children</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">3-5 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Engages in cooperative play</li>
-                          <li>Develops friendships</li>
-                          <li>Understands and follows rules</li>
-                          <li>Expresses a wide range of emotions</li>
-                          <li>Begins to regulate emotions</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">5-7 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Forms more complex friendships</li>
-                          <li>Understands others' perspectives</li>
-                          <li>Develops better emotional regulation</li>
-                          <li>Shows increased empathy and compassion</li>
-                          <li>Follows social norms and rules</li>
-                        </ul>
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">1-2 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Shows affection to familiar people</li>
+                            <li>May have separation anxiety</li>
+                            <li>Begins to show empathy</li>
+                            <li>Engages in parallel play (playing alongside others)</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">3-5 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Engages in cooperative play</li>
+                            <li>Develops friendships</li>
+                            <li>Understands and follows rules</li>
+                            <li>Expresses a wide range of emotions</li>
+                            <li>Begins to regulate emotions</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -482,7 +482,7 @@ export default function GuidesPage() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button asChild className="border-green-600 hover:bg-green-700">
+                <Button asChild className="border-teal-600 hover:bg-teal-700">
                       <Link href="/activity-modules?area=social">
                         View Social & Emotional Activities
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -498,7 +498,7 @@ export default function GuidesPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Puzzle className="h-6 w-6 mr-2 text-green-700" />
+                <Puzzle className="h-6 w-6 mr-2 text-teal-700" />
                     Adaptive Development
                   </CardTitle>
                   <CardDescription>Self-help skills and daily living activities</CardDescription>
@@ -514,60 +514,60 @@ export default function GuidesPage() {
 
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Key Milestones</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">0-12 Months</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Feeds from bottle or breast</li>
-                          <li>Begins to eat solid foods</li>
-                          <li>Helps during dressing by extending arm or leg</li>
-                          <li>Drinks from a cup with help</li>
-                        </ul>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">0-12 Months</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Feeds from bottle or breast</li>
+                            <li>Begins to eat solid foods</li>
+                            <li>Helps during dressing by extending arm or leg</li>
+                            <li>Drinks from a cup with help</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">2-3 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Uses utensils more effectively</li>
+                            <li>Puts on simple clothing items</li>
+                            <li>Washes and dries hands with help</li>
+                            <li>May be toilet trained during the day</li>
+                            <li>Helps put toys away</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">5-7 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Dresses independently</li>
+                            <li>Ties shoelaces</li>
+                            <li>Bathes independently</li>
+                            <li>Prepares simple snacks</li>
+                            <li>Completes household chores</li>
+                            <li>Understands basic safety rules</li>
+                          </ul>
+                        </div>
                       </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">1-2 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Feeds self with fingers</li>
-                          <li>Begins to use utensils</li>
-                          <li>Removes some clothing items</li>
-                          <li>Helps with simple household tasks</li>
-                          <li>Shows interest in toilet training</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">2-3 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Uses utensils more effectively</li>
-                          <li>Puts on simple clothing items</li>
-                          <li>Washes and dries hands with help</li>
-                          <li>May be toilet trained during the day</li>
-                          <li>Helps put toys away</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">3-5 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Dresses and undresses with minimal help</li>
-                          <li>Uses bathroom independently</li>
-                          <li>Brushes teeth with supervision</li>
-                          <li>Helps with simple chores</li>
-                          <li>Pours from a small pitcher</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-600 pl-4">
-                        <h4 className="font-medium">5-7 Years</h4>
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>Dresses independently</li>
-                          <li>Ties shoelaces</li>
-                          <li>Bathes independently</li>
-                          <li>Prepares simple snacks</li>
-                          <li>Completes household chores</li>
-                          <li>Understands basic safety rules</li>
-                        </ul>
+                      <div className="space-y-4">
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">1-2 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Feeds self with fingers</li>
+                            <li>Begins to use utensils</li>
+                            <li>Removes some clothing items</li>
+                            <li>Helps with simple household tasks</li>
+                            <li>Shows interest in toilet training</li>
+                          </ul>
+                        </div>
+                    <div className="border-l-4 border-teal-600 pl-4">
+                          <h4 className="font-medium">3-5 Years</h4>
+                          <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li>Dresses and undresses with minimal help</li>
+                            <li>Uses bathroom independently</li>
+                            <li>Brushes teeth with supervision</li>
+                            <li>Helps with simple chores</li>
+                            <li>Pours from a small pitcher</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -586,7 +586,7 @@ export default function GuidesPage() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button asChild className="border-green-600 hover:bg-green-700">
+                <Button asChild className="border-teal-600 hover:bg-teal-700">
                       <Link href="/activity-modules?area=adaptive">
                         View Adaptive Skill Activities
                         <ArrowRight className="ml-2 h-4 w-4" />

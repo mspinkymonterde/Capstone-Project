@@ -30,6 +30,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { getCsnEvents } from "@/components/csn-event-service"
 
 export default function ParentDashboardPage() {
   const { user, markFirstLoginComplete } = useAuth()
@@ -75,11 +76,7 @@ export default function ParentDashboardPage() {
     router.push("/parent/checklist")
   }
 
-  const handleSkipChecklist = () => {
-    if (markFirstLoginComplete) {
-      markFirstLoginComplete()
-    }
-  }
+  const events = getCsnEvents();
 
   return (
     <>
@@ -123,10 +120,7 @@ export default function ParentDashboardPage() {
                       className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold"
                     >
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Start Checklist
-                    </Button>
-                    <Button onClick={handleSkipChecklist} variant="outline" className="border-gray-300 text-gray-600">
-                      Skip for now
+                      Start Assessment
                     </Button>
                   </div>
                 </div>
@@ -246,7 +240,7 @@ export default function ParentDashboardPage() {
                     )}
                     <Button size="sm" variant="outline" className="border-teal-300 text-teal-600 hover:bg-teal-50">
                       <TrendingUp className="h-4 w-4 mr-2" />
-                      View Progress
+                      Update Assessment
                     </Button>
                   </div>
                 </CardContent>
@@ -365,10 +359,14 @@ export default function ParentDashboardPage() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <EventItem title="Parent Support Group" date="Tomorrow" time="10:00 AM" type="support" />
-                <EventItem title="Speech Therapy Workshop" date="Friday" time="2:00 PM" type="workshop" />
-                <EventItem title="Family Fun Day" date="Next Week" time="9:00 AM" type="event" />
-                <Link href="/parent/events" className="block">
+                {events.slice(0, 3).map((event, idx) => (
+                  <div key={event.title + idx} className="p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
+                    <div className="font-medium text-sm text-gray-800">{event.title}</div>
+                    <div className="text-xs text-gray-600">{event.date} at {event.time}</div>
+                    <div className="text-xs text-gray-500">{event.location}</div>
+                  </div>
+                ))}
+                <Link href="/parent/event" className="block">
                   <Button variant="ghost" className="w-full text-green-600 hover:bg-green-50">
                     View All Events <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
