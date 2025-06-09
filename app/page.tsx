@@ -26,6 +26,8 @@ import { HeroBanner } from "@/components/hero-banner"
 import { Gallery } from "@/components/gallery"
 import { BlogSection } from "@/components/blog-section"
 import CsnEvents from "@/components/csn-events"
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 export default function CSNLandingPage() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -35,13 +37,24 @@ export default function CSNLandingPage() {
     setIsVisible(true)
   }, [])
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: false, // allow animation every time the section enters viewport
+      offset: 80,
+      easing: "ease-out-cubic",
+    })
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero Banner Section */}
-      <HeroBanner />
+      <div data-aos="fade-up">
+        <HeroBanner />
+      </div>
 
       {/* About Section */}
-      <section  className="py-20 bg-white">
+      <section  className="py-20 bg-white" data-aos="fade-up">
         <div id="about" className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl text-center mb-16">
             <div className="highlight-bar inline-block">
@@ -94,60 +107,48 @@ export default function CSNLandingPage() {
 
           {/* Visual Grid of Activities */}
           <div className="grid gap-4 md:grid-cols-4">
-            <div className="image-hover rounded-lg overflow-hidden relative">
+            <div className="image-hover rounded-lg overflow-hidden relative" data-aos="fade-up">
               <Image
-                src="/placeholder.svg?height=200&width=300"
+                src="1.jpg"
                 alt="Therapy room activities"
                 width={300}
                 height={200}
                 className="w-full h-48 object-cover"
               />
-              <div className="image-overlay">
-                <span>Therapy Rooms</span>
-              </div>
             </div>
-            <div className="image-hover rounded-lg overflow-hidden relative">
+            <div className="image-hover rounded-lg overflow-hidden relative" data-aos="fade-up" data-aos-delay="100">
               <Image
-                src="/placeholder.svg?height=200&width=300"
+                src="2.jpg"
                 alt="Play area activities"
                 width={300}
                 height={200}
                 className="w-full h-48 object-cover"
               />
-              <div className="image-overlay">
-                <span>Play Areas</span>
-              </div>
             </div>
-            <div className="image-hover rounded-lg overflow-hidden relative">
+            <div className="image-hover rounded-lg overflow-hidden relative" data-aos="fade-up" data-aos-delay="200">
               <Image
-                src="/placeholder.svg?height=200&width=300"
+                src="3.jpg"
                 alt="Staff working with children"
                 width={300}
                 height={200}
                 className="w-full h-48 object-cover"
               />
-              <div className="image-overlay">
-                <span>Expert Staff</span>
-              </div>
             </div>
-            <div className="image-hover rounded-lg overflow-hidden relative">
+            <div className="image-hover rounded-lg overflow-hidden relative" data-aos="fade-up" data-aos-delay="300">
               <Image
-                src="/placeholder.svg?height=200&width=300"
+                src="4.jpg"
                 alt="Group activities"
                 width={300}
                 height={200}
                 className="w-full h-48 object-cover"
               />
-              <div className="image-overlay">
-                <span>Group Activities</span>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-gray-50" data-aos="fade-up">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl text-center mb-16">
             <div className="highlight-bar inline-block">
@@ -220,7 +221,7 @@ export default function CSNLandingPage() {
       </section>
 
       {/* Parent Support Section - Special Feature */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-csn-teal via-csn-green to-teal-700 text-white relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-csn-teal via-csn-green to-teal-700 text-white relative overflow-hidden" data-aos="fade-up">
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1200')] bg-cover bg-center opacity-10"></div>
         <div className="container px-2 sm:px-4 md:px-6 relative z-10">
           <div className="mx-auto max-w-6xl">
@@ -240,53 +241,41 @@ export default function CSNLandingPage() {
                 <div className="space-y-4">
                   <div className="image-hover rounded-lg overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=200&width=300"
+                      src="8.jpg"
                       alt="Parents using support system"
                       width={300}
                       height={200}
                       className="w-full h-40 sm:h-48 object-cover"
                     />
-                    <div className="image-overlay">
-                      <span>Parent Support Interface</span>
-                    </div>
                   </div>
                   <div className="image-hover rounded-lg overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=150&width=300"
+                      src="5.jpg"
                       alt="Developmental guides"
                       width={300}
                       height={150}
                       className="w-full h-28 sm:h-36 object-cover"
                     />
-                    <div className="image-overlay">
-                      <span>Expert Guides</span>
-                    </div>
                   </div>
                 </div>
                 <div className="space-y-4 mt-4 sm:mt-8">
                   <div className="image-hover rounded-lg overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=150&width=300"
+                      src="6.jpg"
                       alt="Family activities"
                       width={300}
                       height={150}
                       className="w-full h-28 sm:h-36 object-cover"
                     />
-                    <div className="image-overlay">
-                      <span>Home Activities</span>
-                    </div>
                   </div>
                   <div className="image-hover rounded-lg overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=200&width=300"
+                      src="7.jpg"
                       alt="Parent workshops"
                       width={300}
                       height={200}
                       className="w-full h-40 sm:h-48 object-cover"
                     />
-                    <div className="image-overlay">
-                      <span>Parent Workshops</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -340,7 +329,7 @@ export default function CSNLandingPage() {
                 <Card className="bg-white/10 border-white/20 text-white gov-card">
                   <CardHeader>
                     <Image
-                      src="/placeholder.svg?height=150&width=300"
+                      src="11.jpg"
                       alt="Understanding developmental delays"
                       width={300}
                       height={150}
@@ -352,7 +341,7 @@ export default function CSNLandingPage() {
                     <p className="text-teal-100 text-xs sm:text-sm mb-2 sm:mb-4">
                       Learn about early signs and intervention strategies for developmental delays.
                     </p>
-                    <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
+                    <Button variant="outline" className="border-white/30  bg-csn-yellow text-csn-green hover:bg-yellow-400  w-full sm:w-auto">
                       Read Article
                     </Button>
                   </CardContent>
@@ -361,7 +350,7 @@ export default function CSNLandingPage() {
                 <Card className="bg-white/10 border-white/20 text-white gov-card">
                   <CardHeader>
                     <Image
-                      src="/placeholder.svg?height=150&width=300"
+                      src="9.jpg"
                       alt="Early signs to watch"
                       width={300}
                       height={150}
@@ -373,7 +362,7 @@ export default function CSNLandingPage() {
                     <p className="text-teal-100 text-xs sm:text-sm mb-2 sm:mb-4">
                       Key developmental milestones and warning signs every parent should know.
                     </p>
-                    <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
+                    <Button variant="outline" className="border-white/30 bg-csn-yellow text-csn-green hover:bg-yellow-400  w-full sm:w-auto">
                       Read Article
                     </Button>
                   </CardContent>
@@ -382,7 +371,7 @@ export default function CSNLandingPage() {
                 <Card className="bg-white/10 border-white/20 text-white gov-card">
                   <CardHeader>
                     <Image
-                      src="/placeholder.svg?height=150&width=300"
+                      src="10.jpg"
                       alt="Home-based support"
                       width={300}
                       height={150}
@@ -394,7 +383,7 @@ export default function CSNLandingPage() {
                     <p className="text-teal-100 text-xs sm:text-sm mb-2 sm:mb-4">
                       Practical strategies for supporting your child's development at home.
                     </p>
-                    <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
+                    <Button variant="outline" className="border-white/30  bg-csn-yellow text-csn-green hover:bg-yellow-400  w-full sm:w-auto">
                       Read Article
                     </Button>
                   </CardContent>
@@ -406,14 +395,18 @@ export default function CSNLandingPage() {
       </section>
 
       {/* Facilities Gallery Section */}
-      <Gallery 
-      />
+      <div data-aos="fade-up">
+        <Gallery 
+        />
+      </div>
 
       {/* Blog & Updates Section */}
-      <BlogSection />
+      <div data-aos="fade-up">
+        <BlogSection />
+      </div>
 
       {/* Events Section */}
-      <section id="events" className="py-20 bg-white">
+      <section id="events" className="py-20 bg-white" data-aos="fade-up">
         <div className="container px-4 md:px-6">
           <div className="mx-auto max-w-4xl text-center mb-16">
             <div className="highlight-bar inline-block">
@@ -453,7 +446,7 @@ export default function CSNLandingPage() {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="py-16 md:py-20 bg-gray-50">
+            <section id="contact" className="py-16 md:py-20 bg-gray-50" data-aos="fade-up">
             <div className="container px-2 sm:px-4 md:px-6">
               <div className="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2">
               {/* Left: Google Map */}

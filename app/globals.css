@@ -10,11 +10,11 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 178 100% 35%; /* Teal #00b2a9 */
+    --primary: 178 100% 35%; /* CSN Teal #00b2a9 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 142 100% 24%; /* Green #007a3d */
+    --secondary: 142 100% 24%; /* CSN Green #007a3d */
     --secondary-foreground: 0 0% 98%;
-    --accent: 45 96% 62%; /* Yellow #f9cc41 */
+    --accent: 45 96% 62%; /* CSN Yellow #f9cc41 */
     --accent-foreground: 240 10% 3.9%;
     --muted: 210 40% 98%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -25,10 +25,13 @@
     --ring: 178 100% 35%;
     --radius: 0.75rem;
 
-    /* Custom CSN Colors */
+    /* CSN Brand Colors */
     --csn-teal: 178 100% 35%;
     --csn-green: 142 100% 24%;
     --csn-yellow: 45 96% 62%;
+    --csn-teal-light: 178 100% 85%;
+    --csn-green-light: 142 100% 85%;
+    --csn-yellow-light: 45 96% 85%;
   }
 
   .dark {
@@ -59,132 +62,12 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: "Inter", "Open Sans", "Lato", system-ui, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
   }
 }
 
-/* Smooth scroll for anchor navigation */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom animations */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounce-soft {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-3px);
-  }
-  60% {
-    transform: translateY(-2px);
-  }
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes zoom-in {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.05);
-  }
-}
-
-.animate-fade-up {
-  animation: fadeUp 0.6s ease-out;
-}
-
-.animate-slide-in {
-  animation: slideIn 0.4s ease-out;
-}
-
-.animate-bounce-soft {
-  animation: bounce-soft 2s infinite;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2s infinite;
-}
-
-.animate-zoom-in {
-  animation: zoom-in 0.3s ease-out;
-}
-
-/* Smooth transitions */
-.transition-smooth {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Government-style card hover effects */
-.gov-card {
-  @apply transition-smooth hover:shadow-lg hover:-translate-y-1;
-}
-
-.gov-card-special {
-  @apply transition-smooth hover:shadow-xl hover:-translate-y-2 hover:scale-105;
-}
-
-/* Image hover effects */
-.image-hover {
-  @apply transition-smooth hover:scale-105 overflow-hidden;
-}
-
-.image-overlay {
-  @apply absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center text-white font-medium;
-}
-
-.image-hover:hover .image-overlay {
-  @apply opacity-100;
-}
-
-/* Accessibility improvements */
-.focus-visible {
-  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
-}
-
-/* Loading states */
-.loading-skeleton {
-  @apply animate-pulse bg-gray-200 rounded;
-}
-
-/* Custom utility classes */
+/* CSN Brand Utility Classes */
 .text-csn-teal {
   color: hsl(var(--csn-teal));
 }
@@ -209,6 +92,18 @@ html {
   background-color: hsl(var(--csn-yellow));
 }
 
+.bg-csn-teal-light {
+  background-color: hsl(var(--csn-teal-light));
+}
+
+.bg-csn-green-light {
+  background-color: hsl(var(--csn-green-light));
+}
+
+.bg-csn-yellow-light {
+  background-color: hsl(var(--csn-yellow-light));
+}
+
 .border-csn-teal {
   border-color: hsl(var(--csn-teal));
 }
@@ -221,30 +116,43 @@ html {
   border-color: hsl(var(--csn-yellow));
 }
 
-/* Special highlight bar */
-.highlight-bar {
-  @apply relative;
+/* CSN Gradient Backgrounds */
+.bg-gradient-csn-primary {
+  background: linear-gradient(135deg, hsl(var(--csn-teal)) 0%, hsl(var(--csn-green)) 100%);
 }
 
-.highlight-bar::before {
-  content: "";
-  @apply absolute -top-2 left-0 w-16 h-1 bg-csn-yellow rounded-full;
+.bg-gradient-csn-secondary {
+  background: linear-gradient(135deg, hsl(var(--csn-green)) 0%, hsl(var(--csn-yellow)) 100%);
 }
 
-/* Lightbox styles */
-.lightbox-overlay {
-  @apply fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4;
+.bg-gradient-csn-accent {
+  background: linear-gradient(135deg, hsl(var(--csn-teal)) 0%, hsl(var(--csn-yellow)) 100%);
 }
 
-.lightbox-content {
-  @apply relative max-w-4xl max-h-full bg-white rounded-lg overflow-hidden;
+.bg-gradient-csn-light {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--csn-teal-light)) 0%,
+    hsl(var(--csn-green-light)) 50%,
+    hsl(var(--csn-yellow-light)) 100%
+  );
 }
 
-.lightbox-image {
-  @apply w-full h-auto max-h-[80vh] object-contain;
+/* Focus and Accessibility */
+.focus-visible {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
 }
 
-.lightbox-close {
-  @apply absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors;
+/* Smooth Transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Card Hover Effects */
+.card-hover {
+  @apply transition-smooth hover:shadow-lg hover:-translate-y-1;
+}
+
+.card-hover-special {
+  @apply transition-smooth hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02];
+}

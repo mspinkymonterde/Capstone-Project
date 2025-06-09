@@ -1,16 +1,22 @@
 "use client"
 
 import type React from "react"
-
 import { createContext, useContext, useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 
 type ChildInfo = {
   name: string
   age: number
+  gender: string
   status: string
   diagnosisType?: string
   profileImage?: string
+}
+
+type PersonalInfo = {
+  address: string
+  mobileNumber: string
+  relationship: string
 }
 
 type User = {
@@ -19,7 +25,11 @@ type User = {
   email: string
   role: "admin" | "parent"
   profileImage?: string
-  childInfo?: ChildInfo
+  childrenInfo?: ChildInfo[]
+  personalInfo?: PersonalInfo
+  checklistCompleted?: boolean
+  checklistResults?: any[]
+  isFirstLogin?: boolean
 }
 
 type ProfileUpdateData = {
@@ -32,10 +42,12 @@ type AuthContextType = {
   user: User | null
   login: (email: string, password: string) => Promise<boolean>
   logout: () => void
-  register: (email: string, password: string, name: string) => Promise<boolean>
-  updateChildInfo: (childInfo: ChildInfo) => void
+  register: (email: string, password: string, name: string, role: string) => Promise<boolean>
+  updateChildrenInfo: (childrenInfo: ChildInfo[], personalInfo: PersonalInfo) => void
   updateProfile: (data: ProfileUpdateData) => Promise<boolean>
   updatePassword: (currentPassword: string, newPassword: string) => Promise<boolean>
+  updateChecklistResults: (childIndex: number, results: any) => void
+  markFirstLoginComplete: () => void
   isLoading: boolean
 }
 
@@ -59,18 +71,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     {
       id: "2",
-      name: "Parent User",
+      name: "Maria Santos",
       email: "parent@example.com",
       password: "password123",
       role: "parent" as const,
       profileImage: "/placeholder.svg?height=200&width=200",
-      childInfo: {
-        name: "Carlos",
-        age: 7,
-        status: "Diagnosed",
-        diagnosisType: "Autism Spectrum Disorder",
-        profileImage: "/placeholder.svg?height=200&width=200",
+      childrenInfo: [
+        {
+          name: "Carlos",
+          age: 7,
+          gender: "male",
+          status: "diagnosed",
+          diagnosisType: "Autism Spectrum Disorder",
+          profileImage: "/placeholder.svg?height=200&width=200",
+        },
+      ],
+      personalInfo: {
+        address: "123 Main St, Parañaque City",
+        mobileNumber: "09123456789",
+        relationship: "mother",
       },
+      checklistCompleted: false,
+      isFirstLogin: false,
     },
   ]
 
@@ -81,15 +103,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(JSON.parse(storedUser))
     }
     setIsLoading(false)
-  }, []) // Only run once on mount
+  }, [])
 
   // Handle redirects based on auth status
   useEffect(() => {
-    if (isLoading) return // Don't redirect while loading
+    if (isLoading) return
 
-    const isAuthRoute = pathname === "/login" || pathname === "/register" || pathname === "/" || pathname.startsWith("/blog")
+    const isAuthRoute = pathname === "/login" || pathname === "/register" || pathname === "/"
     const isAdminRoute = pathname.startsWith("/admin")
     const isParentRoute = pathname.startsWith("/parent")
+    const isChecklistRoute = pathname === "/parent/checklist"
 
     // If no user and not on auth route, redirect to login
     if (!user && !isAuthRoute) {
@@ -101,6 +124,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (user && isAuthRoute) {
       if (user.role === "admin") {
         router.push("/admin/dashboard")
+      } else if (user.isFirstLogin && user.childrenInfo && user.childrenInfo.length > 0) {
+        // First time login with children info - go to checklist
+        router.push("/parent/checklist")
       } else {
         router.push("/parent/dashboard")
       }
@@ -128,7 +154,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email: foundUser.email,
         role: foundUser.role,
         profileImage: foundUser.profileImage,
-        childInfo: foundUser.role === "parent" ? (foundUser as any).childInfo : undefined,
+        childrenInfo: foundUser.role === "parent" ? (foundUser as any).childrenInfo : undefined,
+        personalInfo: foundUser.role === "parent" ? (foundUser as any).personalInfo : undefined,
+        checklistCompleted: foundUser.role === "parent" ? (foundUser as any).checklistCompleted : true,
+        checklistResults: foundUser.role === "parent" ? (foundUser as any).checklistResults : undefined,
+        isFirstLogin: foundUser.role === "parent" ? (foundUser as any).isFirstLogin : false,
       }
       setUser(userData)
       localStorage.setItem("user", JSON.stringify(userData))
@@ -137,7 +167,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return false
   }
 
-  const register = async (email: string, password: string, name: string) => {
+  const register = async (email: string, password: string, name: string, role: string) => {
     // Simulate API call
     const existingUser = mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase())
     if (existingUser) {
@@ -150,6 +180,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       name,
       email,
       role: "parent" as const,
+      checklistCompleted: false,
+      isFirstLogin: true,
     }
 
     setUser(newUser)
@@ -157,9 +189,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return true
   }
 
-  const updateChildInfo = (childInfo: ChildInfo) => {
+  const updateChildrenInfo = (childrenInfo: ChildInfo[], personalInfo: PersonalInfo) => {
     if (user) {
-      const updatedUser = { ...user, childInfo }
+      const updatedUser = { ...user, childrenInfo, personalInfo }
+      setUser(updatedUser)
+      localStorage.setItem("user", JSON.stringify(updatedUser))
+    } else {
+      // If user is not set yet (e.g., just registered), merge info into localStorage
+      const storedUser = localStorage.getItem("user")
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser)
+        const updatedUser = { ...parsedUser, childrenInfo, personalInfo }
+        setUser(updatedUser)
+        localStorage.setItem("user", JSON.stringify(updatedUser))
+      }
+    }
+  }
+
+  const updateChecklistResults = (childIndex: number, results: any) => {
+    if (user) {
+      const checklistResults = user.checklistResults || []
+      checklistResults[childIndex] = results
+
+      const updatedUser = {
+        ...user,
+        checklistCompleted: true,
+        checklistResults,
+        isFirstLogin: false,
+      }
+      setUser(updatedUser)
+      localStorage.setItem("user", JSON.stringify(updatedUser))
+    }
+  }
+
+  const markFirstLoginComplete = () => {
+    if (user) {
+      const updatedUser = {
+        ...user,
+        isFirstLogin: false,
+      }
       setUser(updatedUser)
       localStorage.setItem("user", JSON.stringify(updatedUser))
     }
@@ -211,9 +279,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         logout,
         register,
-        updateChildInfo,
+        updateChildrenInfo,
         updateProfile,
         updatePassword,
+        updateChecklistResults,
+        markFirstLoginComplete,
         isLoading,
       }}
     >

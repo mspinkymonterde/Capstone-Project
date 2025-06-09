@@ -8,25 +8,19 @@ import Image from "next/image"
 
 const slides = [
   {
-    image: "/pic1.jpg",
+    image: "/14.jpg",
     title: "Inclusive Therapy for Every Child",
     subtitle: "Comprehensive therapeutic services designed to support your child's unique developmental journey",
-    cta: "Learn About Our Services",
-    ctaLink: "#services",
   },
   {
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/13.jpg",
     title: "Empowering Parents Through Support",
     subtitle: "Access our digital parent support system with personalized guidance and resources",
-    cta: "Access Parent Portal",
-    ctaLink: "/parent/register",
   },
   {
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/12.jpg",
     title: "Building Stronger Communities",
     subtitle: "Join our community of families, therapists, and advocates working together for children's success",
-    cta: "Join Our Community",
-    ctaLink: "#contact",
   },
 ]
 
@@ -77,15 +71,6 @@ export function HeroBanner() {
               <div className="max-w-2xl text-white">
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">{slide.title}</h1>
                 <p className="text-lg md:text-xl mb-8 text-gray-200 animate-fade-up">{slide.subtitle}</p>
-                <Link href={slide.ctaLink}>
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 text-base font-medium bg-csn-yellow text-csn-green hover:bg-yellow-400 transition-smooth animate-fade-up rounded-full"
-                  >
-                    {slide.cta}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
               </div>
             </div>
           </div>

@@ -77,7 +77,7 @@ const getModulesByTrack = (track: string) =>
 
 export default function ModulesPage() {
 	return (
-		<div className="container p-6">
+		<div className="container p-6 bg-gradient-to-br from-teal-50 via-green-50 to-yellow-50">
 			<div className="mb-6">
 				<h1 className="text-2xl font-bold text-gray-900">Activity Modules</h1>
 				<p className="text-gray-600">Interactive learning modules to support your child's development</p>

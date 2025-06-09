@@ -234,7 +234,7 @@ export function ParentSidebarContent({
               <Button
           variant="ghost"
           size="icon"
-          className={`flex items-center gap-1.5 font-semibold h-8 w-8 ${sidebarCollapsed ? "justify-center w-full" : ""} hover:bg-green-600 hover:text-white`}
+          className={`flex items-center gap-1.5 font-semibold h-8 w-8 ${sidebarCollapsed ? "justify-center w-full" : ""} hover:bg-teal-600 hover:text-white`}
           onClick={handleToggleCollapse}
           aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
               >
@@ -289,9 +289,9 @@ export function ParentSidebarContent({
                         className={
                           `group flex items-center gap-2 transition-colors w-full
                           ${pathname === item.href
-                            ? "text-green-600 font-semibold bg-green-50"
+                            ? "text-teal-600 font-semibold bg-teal-50"
                             : "text-gray-700"}
-                          hover:text-green-800 hover:bg-green-100
+                          hover:text-teal-800 hover:bg-teal-100
                           ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
                         }
                       >
@@ -299,9 +299,9 @@ export function ParentSidebarContent({
                           className={
                             `h-4 w-4 transition-colors
                             ${pathname === item.href
-                              ? "text-green-600"
+                              ? "text-teal-600"
                               : "text-gray-400"}
-                            group-hover:text-green-800`
+                            group-hover:text-teal-800`
                           }
                         />
                         {!sidebarCollapsed && <span>{item.title}</span>}
@@ -328,9 +328,9 @@ export function ParentSidebarContent({
                             className={
                               `group flex items-center gap-2 transition-colors w-full
                               ${pathname.startsWith(area.href)
-                                ? "text-green-600 font-semibold bg-green-50"
+                                ? "text-teal-600 font-semibold bg-teal-50"
                                 : "text-gray-700"}
-                              hover:text-green-800 hover:bg-green-100
+                              hover:text-teal-800 hover:bg-teal-100
                               ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
                             }
                           >
@@ -338,9 +338,9 @@ export function ParentSidebarContent({
                               className={
                                 `h-4 w-4 transition-colors
                                 ${pathname.startsWith(area.href)
-                                  ? "text-green-600"
+                                  ? "text-teal-600"
                                   : "text-gray-400"}
-                                group-hover:text-green-800`
+                                group-hover:text-teal-800`
                               }
                             />
                             {!sidebarCollapsed && <span>{area.title}</span>}
@@ -356,9 +356,9 @@ export function ParentSidebarContent({
                                   className={
                                     `block w-full text-left transition-colors py-1 px-2 rounded
                                     ${pathname === subItem.href
-                                      ? "text-green-600 font-semibold bg-green-50"
+                                      ? "text-teal-600 font-semibold bg-teal-50"
                                       : "text-gray-700"}
-                                    hover:text-green-800 hover:bg-green-100`
+                                    hover:text-teal-800 hover:bg-teal-100`
                                   }
                                 >
                                   {subItem.title}
@@ -376,9 +376,9 @@ export function ParentSidebarContent({
                           className={
                             `group flex items-center gap-2 transition-colors w-full
                             ${pathname.startsWith(area.href)
-                              ? "text-green-600 font-semibold bg-green-50"
+                              ? "text-teal-600 font-semibold bg-teal-50"
                               : "text-gray-700"}
-                            hover:text-green-800 hover:bg-green-100
+                            hover:text-teal-800 hover:bg-teal-100
                             ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
                           }
                         >
@@ -386,9 +386,9 @@ export function ParentSidebarContent({
                             className={
                               `h-4 w-4 transition-colors
                               ${pathname.startsWith(area.href)
-                                ? "text-green-600"
+                                ? "text-teal-600"
                                 : "text-gray-400"}
-                              group-hover:text-green-800`
+                              group-hover:text-teal-800`
                             }
                           />
                           {!sidebarCollapsed && <span>{area.title}</span>}
@@ -425,9 +425,9 @@ export function ParentSidebarContent({
                         className={
                           `group flex items-center gap-2 transition-colors w-full
                           ${pathname === item.href
-                            ? "text-green-600 font-semibold bg-green-50"
+                            ? "text-teal-600 font-semibold bg-teal-50"
                             : "text-gray-700"}
-                          hover:text-green-800 hover:bg-green-100
+                          hover:text-teal-800 hover:bg-teal-100
                           ${sidebarCollapsed && !isMobile ? "justify-center px-0" : ""}`
                         }
                       >
@@ -435,9 +435,9 @@ export function ParentSidebarContent({
                           className={
                             `h-4 w-4 transition-colors
                             ${pathname === item.href
-                              ? "text-green-600"
+                              ? "text-teal-600"
                               : "text-gray-400"}
-                            group-hover:text-green-800`
+                            group-hover:text-teal-800`
                           }
                         />
                         {!sidebarCollapsed && <span>{item.title}</span>}

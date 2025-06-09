@@ -55,68 +55,72 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container flex min-h-screen items-center justify-center py-8">
-      <div className="mx-auto w-full max-w-md">
-        <div className="mb-8 flex flex-col items-center text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-            <Smile className="h-6 w-6 text-green-600" />
+    <div className="min-h-screen bg-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="mx-auto w-full max-w-2xl">
+          {/* Header */}
+          <div className="mb-8 flex flex-col items-center text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+              <Smile className="h-6 w-6 text-green-600" />
+            </div>
+            <h1 className="mt-4 text-3xl font-bold text-gray-900">Welcome back</h1>
+            <p className="mt-2 text-gray-600">Sign in to your account to continue</p>
           </div>
-          <h1 className="mt-4 text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="mt-2 text-gray-600">Sign in to your account to continue</p>
-        </div>
-        <Card className="border-green-100 shadow-md">
-          <form onSubmit={handleSubmit}>
-            <CardHeader className="space-y-1 pb-4">
-              <CardTitle className="text-xl">Sign in</CardTitle>
-              <CardDescription>Enter your email and password to access your account</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  className="border-green-200 focus-visible:ring-green-600"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
-                  <Link href="/forgot-password" className="text-xs text-green-600 hover:underline">
-                    Forgot password?
+
+          <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+            <form onSubmit={handleSubmit}>
+              <CardHeader className="space-y-1 pb-4 text-center">
+                <CardTitle className="text-2xl text-teal-700">Sign in</CardTitle>
+                <CardDescription>Enter your email and password to access your account</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    className="h-12 border-2 border-gray-200 focus:border-teal-500 focus:ring-teal-500"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
+                    <Link href="/forgot-password" className="text-xs text-teal-600 hover:underline">
+                      Forgot password?
+                    </Link>
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    className="h-12 border-2 border-gray-200 focus:border-teal-500 focus:ring-teal-500"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-col gap-4">
+                <Button
+                  className="w-full h-12 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-semibold rounded-xl"
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing in..." : "Sign in"}
+                </Button>
+                <div className="text-center text-sm">
+                  Don&apos;t have an account?{" "}
+                  <Link href="/register" className="font-medium text-teal-600 hover:underline">
+                    Create an account
                   </Link>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  className="border-green-200 focus-visible:ring-green-600"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button
-                className="w-full rounded-full bg-green-600 hover:bg-green-700"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? "Signing in..." : "Sign in"}
-              </Button>
-              <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link href="/register" className="font-medium text-green-600 hover:underline">
-                  Create an account
-                </Link>
-              </div>
-            </CardFooter>
-          </form>
-        </Card>
+              </CardFooter>
+            </form>
+          </Card>
+        </div>
       </div>
     </div>
   )

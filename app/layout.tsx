@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className}
+        className={`${inter.className} bg-gradient-to-br from-teal-50 via-green-50 to-yellow-50` }
         style={{ colorScheme: "light" }}
       >
         <Toaster />
