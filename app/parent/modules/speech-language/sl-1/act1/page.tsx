@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ArrowRight, Camera, User, MessageCircle, Lightbulb, Clock } from "lucide-react"
+import { ArrowLeft, ArrowRight, Camera, User, MessageCircle, Lightbulb, Clock, X } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
@@ -11,35 +11,35 @@ import { useState } from "react"
 const familyPhotos = [
 	{
 		id: 1,
-		src: "/placeholder.svg?height=300&width=400",
+		src: "/slact1.jpg",
 		alt: "Family playing at the park",
 		scenario: "Playing at the Park",
 		description: "A family enjoying outdoor activities together at a local park",
 	},
 	{
 		id: 2,
-		src: "/placeholder.svg?height=300&width=400",
+		src: "/slact2.jpg",
 		alt: "Family eating dinner together",
 		scenario: "Family Dinner Time",
 		description: "Everyone gathered around the table sharing a meal and conversation",
 	},
 	{
 		id: 3,
-		src: "/placeholder.svg?height=300&width=400",
+		src: "/slact3.jpg",
 		alt: "Family cleaning house together",
 		scenario: "Cleaning Together",
 		description: "Family members working as a team to tidy up their home",
 	},
 	{
 		id: 4,
-		src: "/placeholder.svg?height=300&width=400",
+		src: "/slact4.jpg",
 		alt: "Family reading bedtime story",
 		scenario: "Bedtime Story",
 		description: "Parents and children sharing a quiet reading moment before sleep",
 	},
 	{
 		id: 5,
-		src: "/placeholder.svg?height=300&width=400",
+		src: "/slact5.jpg",
 		alt: "Family cooking together",
 		scenario: "Cooking Together",
 		description: "Family preparing a meal together in the kitchen",
@@ -58,6 +58,7 @@ const conversationPrompts = [
 
 export default function FamilyMomentsTalkActivity() {
 	const [currentPhoto, setCurrentPhoto] = useState(0)
+	const [isFullscreen, setIsFullscreen] = useState(false)
 
 	const nextPhoto = () => {
 		setCurrentPhoto((prev) => (prev + 1) % familyPhotos.length)
@@ -69,6 +70,34 @@ export default function FamilyMomentsTalkActivity() {
 
 	return (
 		<div className="container mx-auto p-4 md:p-6 min-h-screen">
+			{/* Fullscreen Modal */}
+			{isFullscreen && (
+				<div
+					className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+					onClick={() => setIsFullscreen(false)}
+				>
+					<div
+						className="relative"
+						onClick={e => e.stopPropagation()}
+					>
+						<button
+							className="absolute top-2 right-2 z-10 bg-white/80 rounded-full p-1 hover:bg-white"
+							onClick={() => setIsFullscreen(false)}
+							aria-label="Close"
+						>
+							<X className="h-6 w-6 text-gray-800" />
+						</button>
+						<Image
+							src={familyPhotos[currentPhoto].src || "/placeholder.svg"}
+							alt={familyPhotos[currentPhoto].alt}
+							width={1600}
+							height={1200}
+							className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-lg cursor-zoom-out"
+						/>
+					</div>
+				</div>
+			)}
+
 			<div className="mb-6">
 				<Link
 					href="/parent/modules/speech-language/sl-1"
@@ -89,7 +118,7 @@ export default function FamilyMomentsTalkActivity() {
 							</Badge>
 						</div>
 						<h1 className="text-2xl font-bold text-gray-900">Family Moments Talk</h1>
-						<p className="text-gray-600">Explore family photos and practice conversation skills</p>
+						<p className="text-gray-600">Look at each family scenario and discuss what's happening</p>
 					</div>
 					<div className="flex items-center gap-2 text-sm text-gray-600">
 						<Clock className="h-4 w-4" />
@@ -102,8 +131,8 @@ export default function FamilyMomentsTalkActivity() {
 				<div className="lg:col-span-2 space-y-6">
 					<Card className="border-gray-200 shadow-sm">
 						<CardHeader>
-							<CardTitle className="text-teal-700">Photo Carousel</CardTitle>
-							<CardDescription>Look at each family scenario and discuss what's happening</CardDescription>
+							<CardTitle className="text-teal-700">{familyPhotos[currentPhoto].scenario}</CardTitle>
+							<CardDescription>{familyPhotos[currentPhoto].description}</CardDescription>
 						</CardHeader>
 						<CardContent>
 							<div className="space-y-4">
@@ -111,14 +140,11 @@ export default function FamilyMomentsTalkActivity() {
 									<Image
 										src={familyPhotos[currentPhoto].src || "/placeholder.svg"}
 										alt={familyPhotos[currentPhoto].alt}
-										width={400}
-										height={300}
-										className="w-full h-64 object-cover rounded-lg shadow-sm"
+										width={1240}
+										height={1030}
+										className="w-full h-96 object-cover rounded-lg shadow-sm cursor-zoom-in"
+										onClick={() => setIsFullscreen(true)}
 									/>
-									<div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-sm">
-										<h3 className="font-semibold text-gray-900">{familyPhotos[currentPhoto].scenario}</h3>
-										<p className="text-sm text-gray-600">{familyPhotos[currentPhoto].description}</p>
-									</div>
 								</div>
 
 								<div className="flex items-center justify-between">

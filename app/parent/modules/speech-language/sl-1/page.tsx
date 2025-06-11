@@ -10,7 +10,7 @@ const activities = [
 	{
 		id: 1,
 		title: "Family Moments Talk",
-		description: "Explore family photos and practice conversation skills",
+		description: "Look at each family scenario and discuss what's happening",
 		duration: "15-20 min",
 		icon: Camera,
 		href: "/parent/modules/speech-language/sl-1/act1",
