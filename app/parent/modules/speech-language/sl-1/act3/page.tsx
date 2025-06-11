@@ -11,7 +11,7 @@ import { useState } from "react"
 const storyPages = [
 	{
 		id: 1,
-		image: "/placeholder.svg?height=250&width=350",
+		image: "https://sdmntpreastus.oaiusercontent.com/files/00000000-f3a8-61f9-90d3-be1589f47ec0/raw?se=2025-06-11T04%3A42%3A14Z&sp=r&sv=2024-08-04&sr=b&scid=b96a692b-9842-506b-a128-ba956b2bfd2a&skoid=ec8eb293-a61a-47e0-abd0-6051cc94b050&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-11T03%3A35%3A54Z&ske=2025-06-12T03%3A35%3A54Z&sks=b&skv=2024-08-04&sig=1dCigecmEuSblF/XfKDLlcetIG7kLWBapnH1uTrYYSE%3D",
 		text: "Maya was playing with her favorite red toy car in the living room. She loved making it zoom around the coffee table and under the chairs.",
 		emotion: "Happy",
 		emotionColor: "bg-yellow-100 text-yellow-800",
@@ -23,7 +23,7 @@ const storyPages = [
 	},
 	{
 		id: 2,
-		image: "/placeholder.svg?height=250&width=350",
+		image: "https://sdmntpreastus.oaiusercontent.com/files/00000000-59ac-61f9-97ec-50b4c2440108/raw?se=2025-06-11T05%3A36%3A48Z&sp=r&sv=2024-08-04&sr=b&scid=98570053-fdf9-589d-8ab1-69caa3832135&skoid=71e8fa5c-90a9-4c17-827b-14c3005164d6&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-10T21%3A15%3A24Z&ske=2025-06-11T21%3A15%3A24Z&sks=b&skv=2024-08-04&sig=oy3DVGt3lxpX50ZqonIlc0YNWgq%2BHGq4lkwbXjeXaAE%3D",
 		text: "Suddenly, the toy car rolled too fast and went under the big couch! Maya tried to reach it, but her arm wasn't long enough.",
 		emotion: "Worried",
 		emotionColor: "bg-orange-100 text-orange-800",
@@ -35,7 +35,7 @@ const storyPages = [
 	},
 	{
 		id: 3,
-		image: "/placeholder.svg?height=250&width=350",
+		image: "https://sdmntpreastus.oaiusercontent.com/files/00000000-275c-61f9-a5e3-6d2f05f6a2a7/raw?se=2025-06-11T05%3A36%3A48Z&sp=r&sv=2024-08-04&sr=b&scid=e494b168-2364-536b-bff8-303f5f11acc8&skoid=71e8fa5c-90a9-4c17-827b-14c3005164d6&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-10T21%3A14%3A06Z&ske=2025-06-11T21%3A14%3A06Z&sks=b&skv=2024-08-04&sig=a3HCzqbrZ5hZf1zOH%2BVFv97CtZ833S%2Bg7kopd5yOPUY%3D",
 		text: "Maya started to cry because she couldn't get her car back. Her mom heard her and came to see what was wrong.",
 		emotion: "Sad",
 		emotionColor: "bg-blue-100 text-blue-800",
@@ -43,7 +43,7 @@ const storyPages = [
 	},
 	{
 		id: 4,
-		image: "/placeholder.svg?height=250&width=350",
+		image: "https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-e34c-61f7-8343-d5b28c0e73d3/raw?se=2025-06-11T05%3A36%3A48Z&sp=r&sv=2024-08-04&sr=b&scid=39645bd3-942f-52e5-9c83-d022cb117ce6&skoid=71e8fa5c-90a9-4c17-827b-14c3005164d6&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-10T21%3A13%3A32Z&ske=2025-06-11T21%3A13%3A32Z&sks=b&skv=2024-08-04&sig=MqbCFEKdX5rCVXOaskGl8XIq6obGntEYkzdtVH1XLqs%3D",
 		text: "Mom got a long wooden spoon from the kitchen and carefully pushed the car out from under the couch. Maya's face lit up with joy!",
 		emotion: "Relieved",
 		emotionColor: "bg-green-100 text-green-800",
@@ -55,7 +55,7 @@ const storyPages = [
 	},
 	{
 		id: 5,
-		image: "/placeholder.svg?height=250&width=350",
+		image: "https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-186c-61f7-aed7-96b60674ff95/raw?se=2025-06-11T05%3A38%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=c6e0d00e-d549-526e-959c-e4c753b00984&skoid=71e8fa5c-90a9-4c17-827b-14c3005164d6&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-11T03%3A16%3A47Z&ske=2025-06-12T03%3A16%3A47Z&sks=b&skv=2024-08-04&sig=aDPvF481PtYsqbYX0oeA4sCjwlXqvRTrVAUcu/J3PiY%3D",
 		text: "Maya hugged her mom tight and said 'Thank you so much!' She felt proud that she had asked for help instead of giving up.",
 		emotion: "Proud & Grateful",
 		emotionColor: "bg-purple-100 text-purple-800",
@@ -145,13 +145,15 @@ export default function EmotionStorybookActivity() {
 						<CardContent>
 							<div className="space-y-4">
 								<div className="bg-amber-50 rounded-lg p-4">
-									<Image
-										src={currentStoryPage.image || "/placeholder.svg"}
-										alt={`Story illustration for page ${currentPage + 1}`}
-										width={350}
-										height={250}
-										className="w-full h-48 object-cover rounded-lg shadow-sm mb-4"
-									/>
+									<div className="flex justify-center mb-4">
+										<Image
+											src={currentStoryPage.image || "/placeholder.svg"}
+											alt={`Story illustration for page ${currentPage + 1}`}
+											width={500}
+											height={350}
+											className="w-[500px] h-[350px] object-cover rounded-lg shadow-sm"
+										/>
+									</div>
 
 									<div className="text-center mb-3">
 										<Badge className={`${currentStoryPage.emotionColor} border-0`}>

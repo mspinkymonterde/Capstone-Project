@@ -218,26 +218,14 @@ export default function ParentDashboardPage() {
 
                   {/* Quick Actions */}
                   <div className="flex gap-3">
-                    {!user?.checklistCompleted ? (
-                      <Button
-                        onClick={handleStartChecklist}
-                        size="sm"
-                        className="bg-teal-600 hover:bg-teal-700 text-white"
-                      >
-                        <CheckCircle className="h-4 w-4 mr-2" />
-                        View Assessment
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={handleStartChecklist}
-                        size="sm"
-                        variant="outline"
-                        className="border-green-300 text-green-700 hover:bg-green-50"
-                      >
-                        <CheckCircle className="h-4 w-4 mr-2" />
-                        Update Checklist
-                      </Button>
-                    )}
+                    <Button
+                      onClick={handleStartChecklist}
+                      size="sm"
+                      className="bg-teal-600 hover:bg-teal-700 text-white"
+                    >
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      View Assessment
+                    </Button>
                     <Button size="sm" variant="outline" className="border-teal-300 text-teal-600 hover:bg-teal-50">
                       <TrendingUp className="h-4 w-4 mr-2" />
                       Update Assessment
